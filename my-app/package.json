@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "auth0-js": "^9.8.0",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "chai": "^4.2.0",
@@ -10,6 +11,7 @@
     "lodash": "^4.17.11",
     "mocha": "^5.2.0",
     "passport": "^0.4.0",
+    "passport-auth0": "^1.0.0",
     "path": "^0.12.7",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
