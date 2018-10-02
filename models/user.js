@@ -19,21 +19,21 @@ var UserSchema = new Schema({
      type: String,
      required: true
   },
-  isMusican : {
+  isMusican: {
        type: Boolean,
        required: true
   },
   profile_Options: {
      type: Schema.Types.ObjectId,
-     ref: "options"
+     ref: "Options"
   },
   musicianInfo: {
      type: Schema.Types.ObjectId,
-     ref: "musician"
+     ref: "Musician"
   },
   bandInfo: {
        type: Schema.Types.ObjectId,
-       ref: ""
+       ref: "Band"
   }
 });
 

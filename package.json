@@ -7,38 +7,23 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "bootstrap": "^4.1.3",
-    "chai": "^4.2.0",
-    "cheerio": "^1.0.0-rc.2",
-    "express": "^4.16.3",
-    "jquery": "1.9.1",
-    "lodash": "^4.17.11",
-    "mocha": "^5.2.0",
-    "mongoose": "^5.3.0",
-    "passport": "^0.4.0",
-    "passport-auth0": "^1.0.0",
-    "path": "^0.12.7",
-    "popper.js": "^1.14.3",
-    "react": "^16.5.2",
-    "react-bootstrap": "^1.0.0-beta.1",
-    "react-dom": "^16.5.2",
-    "react-router": "^4.3.1",
-    "react-router-bootstrap": "^0.24.4",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.5",
-    "youtube-iframe": "^1.0.3"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  },
-  "devDependencies": {
-    "@types/lodash": "^4.14.116",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "mongoose": "^5.3.0",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "nodemon": "^1.11.0"
+  },
+  "scripts": {
+    "start-react": "cd client && npm run start",
+    "start": "concurrently \"nodemon server.js --ignore 'client/*'\" \"npm run start-react\" --kill-others",
+    "build": "cd client && yarn build",
+    "test": "cd client && yarn test",
+    "seed": "node scripts/seedDB.js",
+    "eject": "cd client && yarn eject",
+    "install": "yarn install && cd client && yarn install",
+    "heroku-postbuild": "npm run build"
   }
 }

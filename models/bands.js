@@ -30,6 +30,10 @@ var BandsSchema = new Schema({
        type: String,
        required: false,
        default: null
+  },
+  musicianInfo: {
+    type: Schema.Types.ObjectId,
+    ref: "Musician"
   }
 });
 
