@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 // const routes = require("./routes");
 const app = express();
-const PORT = process.env.PORT || process.env.DEV_PORT + 1;
+const PORT = process.env.PORT || Number(process.env.DEV_PORT) + 1;
 
 // Define middleware here
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -18,7 +18,8 @@ if (process.env.NODE_ENV === "production") {
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/ensembleMe", {useNewUrlParser: true});
-mongoose.set('useCreateIndex', true);
+mongoose.set("useCreateIndex", true);
+mongoose.set("useFindAndModify", false);
 
 // Start the API server
 app.listen(PORT, function() {
