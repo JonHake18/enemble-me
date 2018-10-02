@@ -21,7 +21,9 @@
     "start": "concurrently \"nodemon server.js --ignore 'client/*'\" \"npm run start-react\" --kill-others",
     "build": "cd client && yarn build",
     "test": "cd client && yarn test",
+    "seed": "node scripts/seedDB.js",
     "eject": "cd client && yarn eject",
-    "install": "yarn install && cd client && yarn install"
+    "install": "yarn install && cd client && yarn install",
+    "heroku-postbuild": "npm run build"
   }
 }
