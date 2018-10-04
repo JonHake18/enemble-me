@@ -8,6 +8,7 @@ import MusicianProfile from "./components/pages/MusicianProfile";
 import FindMusician from "./components/pages/FindMusician";
 import FindBand from "./components/pages/FindBand";
 import Feedback from "./components/pages/Feedback";
+import Contact from "./components/pages/Contact";
 import './App.css';
 
 const App = () => (
@@ -21,6 +22,7 @@ const App = () => (
       <Route exact path="/musicianprofile" component={MusicianProfile} />
       <Route exact path="/findmusician" component={FindMusician} />
       <Route exact path="/findband" component={FindBand} />
+      <Route exact path="/contact" component={Contact} />
     </div>
   </Router>
 );
