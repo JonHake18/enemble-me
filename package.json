@@ -12,11 +12,12 @@
     "mongoose": "^5.3.0",
     "path": "^0.12.7"
   },
+  
   "devDependencies": {
     "concurrently": "^3.5.0",
     "nodemon": "^1.11.0"
   },
-  "scripts": {
+    "scripts": {
     "start-react": "cd client && npm run start",
     "start": "concurrently \"nodemon server.js --ignore 'client/*'\" \"npm run start-react\" --kill-others",
     "build": "cd client && yarn build",
