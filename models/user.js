@@ -19,9 +19,10 @@ var UserSchema = new Schema({
      type: String,
      required: true
   },
-  isMusican: {
+  isMusician: {
        type: Boolean,
-       required: true
+       required: true, 
+       default: true
   },
   profile_Options: {
      type: Schema.Types.ObjectId,

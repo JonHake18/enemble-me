@@ -13,7 +13,7 @@ var OptionsSchema = new Schema({
 });
 
 // This creates our model from the above schema, using mongoose's model method
-var Options = mongoose.model("Options", OptionSchema);
+var Options = mongoose.model("Options", OptionsSchema);
 
 // Export the Article model
 module.exports = Options;
