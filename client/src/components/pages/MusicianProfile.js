@@ -1,7 +1,7 @@
 import React from "react";
 
 const MusicianProfile = () => (
-  <div>
+  <div className="content">
     <h1>MusicianProfile Page</h1>
     <p>
       Donec a volutpat quam. Curabitur nec varius justo, sed rutrum ligula. Curabitur pellentesque

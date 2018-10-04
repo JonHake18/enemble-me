@@ -1,5 +1,10 @@
-body {
+body, html, #root {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  height: 100%;
+  font-family: 'Source Serif Pro', serif;
+}
+
+.content {
+  font-family: 'Roboto', sans-serif;
 }
