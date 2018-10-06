@@ -1,3 +1,4 @@
+require("dotenv");
 const chai = require("chai");
 const chaiHttp = require("chai-http");
 const app = require("../server");
@@ -31,7 +32,7 @@ describe("POST /api/user", function() {
         };
         // Run assertions on the response
         request
-          .post("/api/user")
+          .post(`/api/user`)
           .send(testUser)
           .end((err, result)=>{
                var responseStatus = result.status;
