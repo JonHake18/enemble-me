@@ -1,7 +1,7 @@
 import React from "react";
 
 const FindBand = () => (
-  <div>
+  <div className="content">
     <h1>FindBand Page</h1>
     <p>
       Donec a volutpat quam. Curabitur nec varius justo, sed rutrum ligula. Curabitur pellentesque
