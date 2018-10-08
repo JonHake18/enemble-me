@@ -6,23 +6,23 @@ var Schema = mongoose.Schema;
 // Using the Schema constructor, create a new UserSchema object
 // This is similar to a Sequelize model
 var MusicianSchema = new Schema({
-  firstName : {
+  firstName: {
      type: String,
      required: true
   },
-  lastName : {
+  lastName: {
      type: String,
      required: true
   },
-  location : {
+  location: {
      type: String,
      required: true
   },
-  instrumentsPlayed : [{
-     instrument : {
+  instrumentsPlayed: [{
+     instrument: {
           type: String,
      },
-     yearsExp : {
+     yearsExp: {
           type: Number,
      }
   }],
@@ -31,7 +31,7 @@ var MusicianSchema = new Schema({
     required: false,
     default: null
   },
-  userId : {
+  userInfo: {
      type: Schema.Types.ObjectId,
      ref: "User"
   }
