@@ -1,21 +1,78 @@
-import React from "react";
+import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 
-const Login = () => (
-  <div className="content">
-    <h1>Login Page</h1>
-    <p>
-      Donec a volutpat quam. Curabitur nec varius justo, sed rutrum ligula. Curabitur pellentesque
-      turpis sit amet eros iaculis, a mollis arcu dictum. Ut vel ante eget massa ornare placerat.
-      Etiam nisl orci, finibus sodales volutpat et, hendrerit ut dolor. Suspendisse porta dictum
-      nunc, sed pretium risus rutrum eget. Nam consequat, ligula in faucibus vestibulum, nisi justo
-      laoreet risus, luctus luctus mi lacus sit amet libero. Class aptent taciti sociosqu ad litora
-      torquent per conubia nostra, per inceptos himenaeos. Mauris pretium condimentum tellus eget
-      lobortis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec placerat
-      accumsan mi, ut congue neque placerat eu. Donec nec ipsum in velit pellentesque vehicula sit
-      amet at augue. Maecenas aliquam bibendum congue. Pellentesque semper, lectus non ullamcorper
-      iaculis, est ligula suscipit velit, sed bibendum turpis dui in sapien.
-    </p>
-  </div>
-);
+class LoginForm extends Component {
+	constructor() {
+		super()
+		this.state = {
+			username: '',
+			password: '',
+			redirectTo: null
+		}
 
-export default Login;
+		this.handleSubmit = this.handleSubmit.bind(this)
+		this.handleChange = this.handleChange.bind(this)
+	}
+
+	handleChange(event) {
+		this.setState({
+			[event.target.name]: event.target.value
+		})
+	}
+
+	handleSubmit(event) {
+		event.preventDefault()
+		console.log('handleSubmit')
+		this.props._login(this.state.username, this.state.password)
+		this.setState({
+			redirectTo: '/'
+		})
+	}
+
+	render() {
+		if (this.state.redirectTo) {
+			return <Redirect to={{ pathname: this.state.redirectTo }} />
+		} else {
+			return (
+				<div className="LoginForm">
+				<div className="Home">
+					<h1> Ensemble Me</h1>
+				</div>
+
+					<div className="marginLoginForm">
+						<h1>Login form</h1>
+						<form>
+							<label htmlFor="username">Username: </label>
+							<input
+								type="text"
+								name="username"
+								value={this.state.username}
+								onChange={this.handleChange}
+							/>
+							<label htmlFor="password">Password: </label>
+							<input
+								type="password"
+								name="password"
+								value={this.state.password}
+								onChange={this.handleChange}
+							/>
+							<button onClick={this.handleSubmit}>Login</button>
+						</form>
+						<a href="/auth/google">
+							{/* <GoogleButton /> */}
+							{/* <img src={googleButton} alt="sign into Google Button" /> */}
+						</a>
+					</div>
+					<footer className="absoluteFooter font-small blue">
+					<div className="footer-copyright py-3 text-center">
+						© 2018 Copyright:
+       				 <a> Ensemble Me </a>
+					</div>
+				</footer>
+				</div>
+			)
+		}
+	}
+}
+
+export default LoginForm
