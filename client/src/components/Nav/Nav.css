@@ -5,3 +5,6 @@
 #logo {
     text-align: center;
 }
+.navbar-brand {
+    font-size: 5vh;
+}

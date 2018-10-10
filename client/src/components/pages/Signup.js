@@ -66,14 +66,14 @@ class Signup extends Component {
 					<form>
 						<div className="form-row">
             				<div className="form-group col-md-12">
-              					<div class="radioGroupContainer" id="radioChoicesOne">
-                				<div class="radioButtonContainer">
+              					<div className="radioGroupContainer" id="radioChoicesOne">
+                				<div className="radioButtonContainer">
                   					<div name="Band"></div>
-                  					<input type="button" id= "radioBand" class="radioButtonLabel" value="Band"></input>
+                  					<input type="button" id= "radioBand" className="radioButtonLabel" value="Band"></input>
                 				</div>
-                				<div class="radioButtonContainer">
+                				<div className="radioButtonContainer">
                   					<div name="Musician"></div>
-                  					<input type="button" class="radioButtonLabel" value="Musician"></input>
+                  					<input type="button" className="radioButtonLabel" value="Musician"></input>
                 				</div>
               				</div>
 						</div>
