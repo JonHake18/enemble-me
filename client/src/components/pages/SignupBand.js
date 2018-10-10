@@ -2,22 +2,23 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import './signup.css';
-
-
-const city_names = ["Kansas City", "New York", "Los Angeles"];
+import { Link } from "react-router-dom";
 
 
 class Signup extends Component {
 	constructor() {
 		super()
 		this.state = {
-			firstName: '',
-			lastName: '',
+			bandName: '',
+			location: '',
 			email: '',
-			photos: '',
-			username: '',
+			musicGenre: '',
+			instrument: '',
 			password: '',
-			confirmPassword: '',
+			passwordConfirm: '',
+			experience: '',
+			videoLink: '',
+			bandDescription: '',
 			redirectTo: null
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
@@ -33,12 +34,16 @@ class Signup extends Component {
 		// TODO - validate!
 		axios
 			.post('/auth/signup', {
-				username: this.state.username,
+				bandName: this.state.bandName,
 				password: this.state.password,
-				firstName: this.state.firstName,
-				lastName: this.state.lastName,
+				passwordConfirm: this.state.passwordConfirm,
+				location: this.state.location,
 				email: this.state.email,
-				photos: this.state.photos
+				videoLink: this.state.videoLink,
+				experience: this.state.experience,
+				instrument: this.state.instrument,
+				bandDescription: this.state.bandDesription,
+				musicGenre: this.state.musicGenre,
 			})
 			.then(response => {
 				console.log(response)
@@ -62,19 +67,19 @@ class Signup extends Component {
 		return (
 			<div>
 				<div className="SignupForm">
-					<h1>Ensemble Me Signup form</h1>
+					<h1>Ensemble Me Band Signup form</h1>
 					<form>
 						<div className="form-row">
             				<div className="form-group col-md-12">
               					<div class="radioGroupContainer" id="radioChoicesOne">
                 				<div class="radioButtonContainer">
                   					<div name="Band"></div>
-                  					<input type="button" id= "radioBand" class="radioButtonLabel" value="Band"></input>
+									  <Link to="/signupBand" class="radioButtonLabel"  className={window.location.pathname === "/signupBand" ? "nav-link active" : "nav-link"}>Band</Link>
                 				</div>
                 				<div class="radioButtonContainer">
                   					<div name="Musician"></div>
-                  					<input type="button" class="radioButtonLabel" value="Musician"></input>
-                				</div>
+									  <Link to="/signupMusician" class="radioButtonLabel"  className={window.location.pathname === "/signupMusician" ? "nav-link active" : "nav-link"}>Musician</Link>
+								</div>
               				</div>
 						</div>
 						<div className="form-group col-md-3">
@@ -82,7 +87,7 @@ class Signup extends Component {
 								<input
 									type="text"
 									className="form-control"
-									id="inputFirstName"
+									id="inputBandName"
 									placeholder="Band Name"
 									name="bandName"
 									value={this.state.bandName}
@@ -90,13 +95,13 @@ class Signup extends Component {
 								/>
 							</div>
 							<div className="form-group col-md-3">
-                <label htmlFor="location">City: </label><br></br>
-                <select value={this.state.value} onChange={this.handleChange}>
-                  <option value="KansasCity">Kansas City</option>
-                  <option value="NewYork">New York</option>
-                  <option value="LosAngeles">Los Angeles</option>
-                  <option value="Miami">Miami</option>
-                /></select>
+                				<label htmlFor="location">City: </label><br></br>
+                				<select name="location" value={this.state.value} onChange={this.handleChange}>
+                  					<option value="KansasCity">Kansas City</option>
+                  					<option value="NewYork">New York</option>
+                  					<option value="LosAngeles">Los Angeles</option>
+                  					<option value="Miami">Miami</option>
+                				</select>
 							</div>
 							<div className="form-group col-md-3">
 								<label htmlFor="musciGenre">Music Genre: </label>
@@ -117,10 +122,10 @@ class Signup extends Component {
 								<input
 									type="text"
 									className="form-control"
-									id="inputUsername"
-									placeholder="Username"
-									name="username"
-									value={this.state.username}
+									id="inputInstrument"
+									placeholder="Instrument Needed"
+									name="instument"
+									value={this.state.instrument}
 									onChange={this.handleChange}
 								/>
 							</div>
@@ -129,10 +134,10 @@ class Signup extends Component {
 								<input
 									type="text"
 									className="form-control"
-									id="inputUsername"
-									placeholder="Username"
-									name="username"
-									value={this.state.username}
+									id="inputExperience"
+									placeholder="Experience"
+									name="experience"
+									value={this.state.experience}
 									onChange={this.handleChange}
 								/>
 							</div>
@@ -166,7 +171,7 @@ class Signup extends Component {
 									type="password"
 									className="form-control"
 									id="inputPasswordConfirm"
-									placeholder="Password"
+									placeholder="Re-Type Password"
 									name="passwordConfirm"
 									value={this.state.passwordConfirm}
 									onChange={this.handleChange}

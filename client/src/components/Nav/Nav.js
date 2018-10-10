@@ -29,7 +29,7 @@ const Nav = () => (
     <div className="collapse navbar-collapse navbarSupportedContent" id="rightNav">
       <ul className="navbar-nav mx-auto">
       <li className="nav-item">
-          <Link to="/signup" className={window.location.pathname === "/signup" ? "nav-link active" : "nav-link"}>Sign up</Link>
+          <Link to="/signupBand" className={window.location.pathname === "/signupBand" ? "nav-link active" : "nav-link"}>Sign up</Link>
         </li>
         <li className="nav-item">
           <Link to="/team" className={window.location.pathname === "/team" ? "nav-link active" : "nav-link"}>Team</Link>
