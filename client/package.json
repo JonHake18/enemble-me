@@ -10,12 +10,10 @@
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.1.0",
-    "chai": "^4.2.0",
     "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.3",
     "jquery": "^3.0.0",
     "lodash": "^4.17.11",
-    "mocha": "^5.2.0",
     "mongoose": "^5.3.0",
     "passport": "^0.4.0",
     "passport-auth0": "^1.0.0",
@@ -38,11 +36,5 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.116"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  }
 }
