@@ -11,7 +11,8 @@ import FindBand from "./components/pages/FindBand";
 import Feedback from "./components/pages/Feedback";
 import Contact from "./components/pages/Contact";
 import Login from "./components/pages/Login";
-import Signup from "./components/pages/Signup";
+import SignupBand from "./components/pages/SignupBand";
+import SignupMusician from "./components/pages/SignupMusician";
 import Profile from "./components/pages/Profile";
 import './App.css';
 
@@ -20,19 +21,18 @@ const App = () => (
     <Router>
       <div>
         <Nav />
-        <div className="container">
-          <Route exact path="/" component={Home} />
-          <Route exact path="/team" component={Team} />
-          <Route exact path="/feedback" component={Feedback} />
-          <Route exact path="/bandprofile" component={BandProfile} />
-          <Route exact path="/musicianprofile" component={MusicianProfile} />
-          <Route exact path="/findmusician" component={FindMusician} />
-          <Route exact path="/findband" component={FindBand} />
-          <Route exact path="/contact" component={Contact} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={Signup} />
-          <Route exact path="/profile" component={Profile} />
-        </div>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/team" component={Team} />
+        <Route exact path="/feedback" component={Feedback} />
+        <Route exact path="/bandprofile" component={BandProfile} />
+        <Route exact path="/musicianprofile" component={MusicianProfile} />
+        <Route exact path="/findmusician" component={FindMusician} />
+        <Route exact path="/findband" component={FindBand} />
+        <Route exact path="/contact" component={Contact} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signupBand" component={SignupBand} />
+        <Route exact path="/signupMusician" component={SignupMusician} />
+        <Route exact path="/profile" component={Profile} />
       </div>
     </Router>
   </Wrapper>
