@@ -1,10 +1,4 @@
 {
-  "name": "ensemble-me",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/JonHake18/ensemble-me.git",
-  "author": "Matthew Kelly",
-  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.3",
     "dotenv": "^6.0.0",
@@ -32,5 +26,8 @@
     "eject": "cd client && npm run eject",
     "postinstall": "cd client && npm install",
     "heroku-postbuild": "npm run build"
+  },
+  "engines": {
+    "node": "^v8.11.3"
   }
 }

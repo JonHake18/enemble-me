@@ -1,8 +1,10 @@
 {
-  "name": "my-app",
-  "version": "0.1.0",
-  "private": true,
-  "proxy": "http://localhost/3001",
+  "name": "ensemble-me",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/JonHake18/ensemble-me.git",
+  "author": "Matthew Kelly",
+  "license": "MIT",
   "dependencies": {
     "auth0-js": "^9.8.0",
     "axios": "^0.18.0",
@@ -11,7 +13,7 @@
     "chai": "^4.2.0",
     "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.3",
-    "jquery" : "^3.0.0",
+    "jquery": "^3.0.0",
     "lodash": "^4.17.11",
     "mocha": "^5.2.0",
     "mongoose": "^5.3.0",
