@@ -18,7 +18,7 @@ import './App.css';
 const App = () => (
   <Wrapper>
     <Router>
-      <div id="top-panel">
+      <div>
         <Nav />
         <div className="container">
           <Route exact path="/" component={Home} />
@@ -35,9 +35,6 @@ const App = () => (
         </div>
       </div>
     </Router>
-    <div id="bottom-panel">
-
-    </div>
   </Wrapper>
 );
 
