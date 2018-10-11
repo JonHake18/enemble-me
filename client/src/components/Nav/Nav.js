@@ -39,7 +39,7 @@ const Nav = () => (
     </Brand>
     <NavList>
       <NavListItem>
-        <Link to="/signup" className={window.location.pathname === "/signup" ? "nav-link active" : "nav-link"}>
+        <Link to="/signupband" className={window.location.pathname === "/signupband" ? "nav-link active" : "nav-link"}>
           Sign up
           </Link>
       </NavListItem>
