@@ -12,26 +12,25 @@
     "mongoose": "^5.3.0",
     "path": "^0.12.7",
     "react-scripts": "^2.0.4",
-    "youtube-player": "^5.5.1"
+    "youtube-player": "^5.5.1",
+    "concurrently": "^3.5.0",
+    "nodemon": "^1.11.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
-    "concurrently": "^3.5.0",
-    "mocha": "^5.2.0",
-    "nodemon": "^1.11.0"
+    "mocha": "^5.2.0"
   },
   "scripts": {
     "start-react": "cd client && yarn start",
-    "start": "concurrently \"nodemon server.js --ignore 'client/*'\" \"yarn start-react\"",
-    "build": "cd client && yarn build",
-    "mocha-test": "yarn mocha -u tdd --reporter spec --exit",
-    "reacttest": "cd client && yarn test",
-    "test": "yarn mocha-test && yarn reacttest",
+    "start": "concurrently \"nodemon server.js --ignore 'client/*'\" \"npm run start-react\"",
+    "build": "cd client && npm run build",
+    "mocha-test": "npm run mocha -u tdd --reporter spec --exit",
+    "reacttest": "cd client && npm run test",
+    "test": "npm run mocha-test && npm run reacttest",
     "seed": "node scripts/seedDB.js",
-    "eject": "cd client && yarn eject",
-    "client-install": "cd client && yarn install",
-    "install": "npm install && npm run client-install",
-    "heroku-postbuild": "yarn build"
+    "eject": "cd client && npm run eject",
+    "postinstall": "cd client && npm install",
+    "heroku-postbuild": "npm run build"
   }
 }
