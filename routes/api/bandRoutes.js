@@ -1,14 +1,15 @@
+require("dotenv");
 const router = require("express").Router();
-const bandsController = require("../../controllers/bandsController");
+const bandsController = require("../../controller/bandsController");
 
-// Matches with "/api/books"
-router.route("/")
+// Matches with "/api/bands"
+router.route(`/:APIkey=${process.env.APIkey}`)
   .get(bandsController.findAll)
   .post(bandsController.create);
 
-// Matches with "/api/books/:id"
+// Matches with "/api/bands/:id"
 router
-  .route("/:id")
+  .route(`/:id/:APIkey=${process.env.APIkey}`)
   .get(bandsController.findById)
   .put(bandsController.update)
   .delete(bandsController.remove);
