@@ -71,12 +71,12 @@ class Signup extends Component {
 					<form>
 						<div className="form-row">
             				<div className="form-group col-md-12">
-              					<div class="radioGroupContainer" id="radioChoicesOne">
-                				<div class="radioButtonContainer">
+              					<div className="radioGroupContainer" id="radioChoicesOne">
+                				<div className="radioButtonContainer">
                   					<div name="Band"></div>
 									  <Link to="/signupBand" class="radioButtonLabel"  className={window.location.pathname === "/signupBand" ? "nav-link active" : "nav-link"}>Band</Link>
                 				</div>
-                				<div class="radioButtonContainer">
+                				<div className="radioButtonContainer">
                   					<div name="Musician"></div>
 									  <Link to="/signupMusician" class="radioButtonLabel"  className={window.location.pathname === "/signupMusician" ? "nav-link active" : "nav-link"}>Musician</Link>
 								</div>
