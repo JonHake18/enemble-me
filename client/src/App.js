@@ -12,6 +12,7 @@ import Feedback from "./components/pages/Feedback";
 import Contact from "./components/pages/Contact";
 import Login from "./components/pages/Login";
 import Signup from "./components/pages/Signup";
+import Profile from "./components/pages/Profile";
 import './App.css';
 
 const App = () => (
@@ -29,6 +30,7 @@ const App = () => (
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
+        <Route exact path="/profile" component={Profile} />
       </div>
     </Router>
   </Wrapper>
