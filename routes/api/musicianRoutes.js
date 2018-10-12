@@ -4,7 +4,7 @@ const musiciansController = require("../../controller/musiciansController");
 
 // Matches with "/api/musicians"
 router.route(`/:APIkey=${process.env.APIkey}`)
-  .get(musiciansController.findAll)
+  .get(musiciansController.search)
   .post(musiciansController.create);
 
 // Matches with "/api/musicians/:id"

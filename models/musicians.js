@@ -14,17 +14,17 @@ var MusicianSchema = new Schema({
      type: String,
      required: true
   },
+  genre: {
+    type: String,
+    required: false,
+  },
   location: {
      type: String,
      required: true
   },
   instrumentsPlayed: [{
-     instrument: {
-          type: String,
-     },
-     yearsExp: {
-          type: Number,
-     }
+    type: Schema.Types.ObjectId,
+    ref: "Instrument"
   }],
   videoUrl: {
     type: String,
