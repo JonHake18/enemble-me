@@ -1,59 +1,8 @@
-.radioButtonContainer {
-    float:left;
-    padding: 0px;
-    width: 100px;
-    height: line-height;
-    text-align:center;
-    vertical-align: middle;
-    background-color: rgb(231, 231, 231);
-    border-radius: 3px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
-  
-  .radioButtonContainer .radioButtonDot {
-    padding: 0px;
-    width: 100px;
-    height: 50px;
-    text-align:center;
-    background-color: transparent;
-    border: 1px solid #000;
-    vertical-align: middle;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    -o-transition: all .5s ease;
-    -moz-transition: all .5s ease;
-    -webkit-transition: all .5s ease;
-    -ms-transition: all .5s ease;
-    transition: all .5s ease;
-  }
-  
-  .radioButtonContainer .radioButtonDotActive {
-    padding: 0px;
-    width: 100px;
-    height: 50px;
-    text-align:center;
-    background-color: #1396DE;
-    border: 10px solid transparent;
-    vertical-align: middle;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    -o-transition: all .5s ease;
-    -moz-transition: all .5s ease;
-    -webkit-transition: all .5s ease;
-    -ms-transition: all .5s ease;
-    transition: all .5s ease;
-  }
-  .radioButtonContainer .radioButtonLabel {
-    background-color: transparent;
-    width: 100px;
-    height: 50px;
-    vertical-align: middle;
-    border: 0;
-    text-align:center;
-    padding: 0px;
+h1 {
+  text-align: center;
+}
 
-  }
+a {
+  color: white;
+}
 

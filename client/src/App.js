@@ -8,7 +8,7 @@ import BandProfile from "./components/pages/BandProfile";
 import MusicianProfile from "./components/pages/MusicianProfile";
 import FindMusician from "./components/pages/FindMusician";
 import FindBand from "./components/pages/FindBand";
-import Feedback from "./components/pages/Feedback";
+import About from "./components/pages/About";
 import Contact from "./components/pages/Contact";
 import Login from "./components/pages/Login";
 import SignupBand from "./components/pages/SignupBand";
@@ -21,10 +21,10 @@ const App = () => (
     <Router>
       <div>
         <Nav />
-        <div class="container">
+        <div className="container rounded border border-secondary shadow p-3 mb-5">
           <Route exact path="/" component={Home} />
           <Route exact path="/team" component={Team} />
-          <Route exact path="/feedback" component={Feedback} />
+          <Route exact path="/about" component={About} />
           <Route exact path="/bandprofile" component={BandProfile} />
           <Route exact path="/musicianprofile" component={MusicianProfile} />
           <Route exact path="/findmusician" component={FindMusician} />

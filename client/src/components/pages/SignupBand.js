@@ -3,6 +3,9 @@ import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import './signup.css';
 import { Link } from "react-router-dom";
+import DropdownList from "../Form/DropdownList";
+import city_names from "../Arrays/Cities";
+import state_names from "../Arrays/States";
 
 
 class Signup extends Component {
@@ -67,22 +70,18 @@ class Signup extends Component {
 		return (
 			<div>
 				<div className="SignupForm">
-					<h1>Ensemble Me Band Signup form</h1>
+					<h1>Band Signup</h1>
 					<form>
 						<div className="form-row">
-            				<div className="form-group col-md-12">
-              					<div className="radioGroupContainer" id="radioChoicesOne">
-                				<div className="radioButtonContainer">
-                  					<div name="Band"></div>
-									  <Link to="/signupBand" class="radioButtonLabel"  className={window.location.pathname === "/signupBand" ? "nav-link active" : "nav-link"}>Band</Link>
-                				</div>
-                				<div className="radioButtonContainer">
-                  					<div name="Musician"></div>
-									  <Link to="/signupMusician" class="radioButtonLabel"  className={window.location.pathname === "/signupMusician" ? "nav-link active" : "nav-link"}>Musician</Link>
-								</div>
-              				</div>
-						</div>
-						<div className="form-group col-md-3">
+							<div className="form-group col-md-12">
+								<button className="btn btn-secondary find-submit">
+									<Link to="/signupband" className={window.location.pathname === "/signupband" ? "nav-link active" : "nav-link"}>Band</Link>
+								</button>
+								<button className="btn btn-outline-secondary find-submit">
+									<Link to="/signupmusician" className={window.location.pathname === "/signupmusician" ? "nav-link active" : "nav-link"}>Musician</Link>
+								</button>
+							</div>
+							<div className="form-group col-md-4">
 								<label htmlFor="bandName">Band Name: </label>
 								<input
 									type="text"
@@ -94,16 +93,7 @@ class Signup extends Component {
 									onChange={this.handleChange}
 								/>
 							</div>
-							<div className="form-group col-md-3">
-                				<label htmlFor="location">City: </label><br></br>
-                				<select name="location" value={this.state.value} onChange={this.handleChange}>
-                  					<option value="KansasCity">Kansas City</option>
-                  					<option value="NewYork">New York</option>
-                  					<option value="LosAngeles">Los Angeles</option>
-                  					<option value="Miami">Miami</option>
-                				</select>
-							</div>
-							<div className="form-group col-md-3">
+							<div className="form-group col-md-4">
 								<label htmlFor="musciGenre">Music Genre: </label>
 								<input
 									type="text"
@@ -115,6 +105,14 @@ class Signup extends Component {
 									onChange={this.handleChange}
 								/>
 							</div>
+							<div className="form-group col-md-2">
+							<label htmlFor="location">City: </label><br></br>
+							<DropdownList data={city_names} id="city-names"></DropdownList>
+						</div>
+						<div className="form-group col-md-2">
+							<label htmlFor="location">State	: </label><br></br>
+							<DropdownList data={state_names} id="state-names"></DropdownList>
+						</div>
 						</div>
 						<div className="form-row">
 							<div className="form-group col-md-6">
@@ -129,7 +127,7 @@ class Signup extends Component {
 									onChange={this.handleChange}
 								/>
 							</div>
-              <div className="form-group col-md-6">
+							<div className="form-group col-md-6">
 								<label htmlFor="experience">Experience: </label>
 								<input
 									type="text"
@@ -141,7 +139,7 @@ class Signup extends Component {
 									onChange={this.handleChange}
 								/>
 							</div>
-              <div className="form-group col-md-12">
+							<div className="form-group col-md-12">
 								<label htmlFor="email">Email: </label>
 								<input
 									type="email"
@@ -177,7 +175,7 @@ class Signup extends Component {
 									onChange={this.handleChange}
 								/>
 							</div>
-              <div className="form-group col-md-12">
+							<div className="form-group col-md-12">
 								<label htmlFor="videoLink">YouTube Video Link: </label>
 								<input
 									type="text"
@@ -189,7 +187,7 @@ class Signup extends Component {
 									onChange={this.handleChange}
 								/>
 							</div>
-              <div className="form-group col-md-12">
+							<div className="form-group col-md-12">
 								<label htmlFor="bandDescription">Band Description: </label>
 								<input
 									type="text"
@@ -202,10 +200,10 @@ class Signup extends Component {
 								/>
 							</div>
 						</div>
-						<button className="btn btn-primary" type="submit" onClick={this.handleSubmit}>Sign up</button>
+						<button className="btn btn-outline-secondary find-submit" type="submit" onClick={this.handleSubmit}>Sign up</button>
 					</form>
 				</div>
-			</div>
+			</div >
 		)
 	}
 }

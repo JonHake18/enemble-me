@@ -5,12 +5,13 @@ var Schema = mongoose.Schema;
 
 // Using the Schema constructor, create a new UserSchema object
 // This is similar to a Sequelize model
+
 var BandsSchema = new Schema({
-  Name : {
+  bandName : {
      type: String,
      required: true
   },
-  Genre : {
+  musicGenre : {
      type: String,
      required: true
   },
@@ -18,27 +19,31 @@ var BandsSchema = new Schema({
      type: String,
      required: true
   },
-  instrumentsPlayed : [{
-     instrument : {
-          type: String,
-     },
-     yearsExp : {
-          type: Number,
-     }
+  instrumentsDesired: [{
+    type: Schema.Types.ObjectId,
+    ref: "Instrument"
   }],
-  bandVideoUrl: {
+  bandVideoLink: {
        type: String,
        required: false,
        default: null
   },
-  musicianInfo: {
+  musicians: [{
     type: Schema.Types.ObjectId,
     ref: "Musician"
-  }
+  }],
+  bandDescription: {
+    type: String,
+    required: false
+  },
+  // local: {
+	// 	email: { type: String, unique: false, required: false },
+	// 	password: { type: String, unique: false, required: false }
+	// },
 });
 
 // This creates our model from the above schema, using mongoose's model method
-var Bands = mongoose.model("Band", BandsSchema);
+var Band = mongoose.model("Band", BandsSchema);
 
 // Export the Article model
-module.exports = Bands;
+module.exports = Band;
