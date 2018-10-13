@@ -18,6 +18,7 @@ class Signup extends Component {
 			passwordConfirm: '',
 			instrument: '',
 			location: '',
+			isMusuician: true,
 			redirectTo: null
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
@@ -32,7 +33,7 @@ class Signup extends Component {
 		event.preventDefault()
 		// TODO - validate!
 		axios
-			.post('/api/musicians/signup', {
+			.post('http://localhost:3001/auth/signup', {
 				firstName: this.state.firstName,
 				lastName: this.state.lastName,
 				password: this.state.password,
@@ -41,7 +42,8 @@ class Signup extends Component {
 				email: this.state.email,
 				experience: this.state.experience,
 				location: this.state.location,
-				instrument: this.state.instrument
+				instrument: this.state.instrument,
+				isMusician: this.state.isMusician
 			})
 			.then(response => {
 				console.log(response)

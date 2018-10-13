@@ -1,7 +1,9 @@
 require("dotenv");
+
 const router = require("express").Router();
 const musiciansController = require("../../controller/musiciansController");
 const musician = require('../../models/musicians');
+const User = require('../../models/user');
 //const passport = require('../../passport');
 
 // Matches with "/api/musicians"
