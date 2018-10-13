@@ -25,7 +25,7 @@ var InstrumentSchema = new Schema({
      },
      bandInfo: {
           type: Schema.Types.ObjectId,
-          ref: "Bands"
+          ref: "Band"
      }
 });
 

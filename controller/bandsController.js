@@ -41,10 +41,10 @@ module.exports = {
       let instrumentsDesired = req.body.instruments;
       let newBand = new Band({
             _id: new mongoose.Types.ObjectId(),
-            name: req.body.firstName,
+            bandName: req.body.firstName,
             location: req.body.location,
-            genre: req.body.genre,
-            bandVideoUrl: req.body.videoUrl,
+            musicGenre: req.body.genre,
+            bandVideoLink: req.body.videoUrl,
             instrumentsPlayed: [],
             userInfo: req.body.userId
       });

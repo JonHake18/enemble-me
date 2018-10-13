@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 
+
 class LoginForm extends Component {
 	constructor() {
 		super()

@@ -50,7 +50,7 @@ module.exports = {
                   firstName: req.body.firstName,
                   lastName: req.body.lastName,
                   location: req.body.location,
-                  videoUrl: req.body.videoUrl,
+                  videoLink: req.body.videoUrl,
                   instrumentsPlayed: [],
                   userInfo: req.body.userId
             });

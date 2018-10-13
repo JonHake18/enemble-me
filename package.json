@@ -1,36 +1,49 @@
 {
-  "name": "ensemble-me",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/JonHake18/ensemble-me.git",
-  "author": "Matthew Kelly",
-  "license": "MIT",
   "dependencies": {
+    "auth0-js": "^9.8.0",
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
-    "dotenv": "^6.0.0",
-    "express": "^4.16.3",
-    "mongoose": "^5.3.0",
+    "bootstrap": "^4.1.3",
+    "cheerio": "^1.0.0-rc.2",
+    "concurrently": "^4.0.1",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "jquery": "^3.3.1",
+    "lodash": "^4.17.11",
+    "mongoose": "^5.3.2",
+    "nodemon": "^1.18.4",
+    "passport": "^0.4.0",
+    "passport-auth0": "^1.0.0",
     "path": "^0.12.7",
+    "popper.js": "^1.14.4",
+    "react": "^16.5.2",
+    "react-bootstrap": "^0.32.4",
+    "react-dom": "^16.5.2",
+    "react-router": "^4.3.1",
+    "react-router-bootstrap": "^0.24.4",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "^2.0.4",
+    "youtube-iframe": "^1.0.3",
     "youtube-player": "^5.5.1"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
-    "chai-http": "^4.0.0",
-    "concurrently": "^3.5.0",
-    "mocha": "^5.2.0",
-    "nodemon": "^1.11.0"
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
+    "mocha": "^5.2.0"
   },
   "scripts": {
     "start-react": "cd client && yarn start",
-    "start": "concurrently \"nodemon server.js --ignore 'client/*'\" \"yarn start-react\"",
-    "build": "cd client && yarn build",
-    "mocha-test": "yarn mocha -u tdd --reporter spec --exit",
-    "reacttest": "cd client && yarn test",
-    "test": "yarn mocha-test && yarn reacttest",
+    "start": "concurrently \"nodemon server.js --ignore 'client/*'\" \"npm run start-react\"",
+    "build": "cd client && npm run build",
+    "mocha-test": "npm run mocha -u tdd --reporter spec --exit",
+    "reacttest": "cd client && npm run test",
+    "test": "npm run mocha-test && npm run reacttest",
     "seed": "node scripts/seedDB.js",
-    "eject": "cd client && yarn eject",
-    "client-install": "cd client && yarn install",
-    "heroku-postbuild": "yarn build"
+    "eject": "cd client && npm run eject",
+    "postinstall": "cd client && npm install",
+    "heroku-postbuild": "npm run build"
+  },
+  "engines": {
+    "node": "^v8.11.3"
   }
 }
