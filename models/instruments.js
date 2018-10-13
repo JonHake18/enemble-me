@@ -14,9 +14,18 @@ var InstrumentSchema = new Schema({
          type: Number,
          required: false
     },
+    isMusician: {
+         type: Boolean,
+         required: true,
+         default: false
+    },
     musicianInfo: {
      type: Schema.Types.ObjectId,
      ref: "Musician"
+     },
+     bandInfo: {
+          type: Schema.Types.ObjectId,
+          ref: "Bands"
      }
 });
 
