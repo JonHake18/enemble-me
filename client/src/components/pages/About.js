@@ -1,8 +1,8 @@
 import React from "react";
 
-const Feedback = () => (
+const About = () => (
   <div className="content">
-    <h1>Feedback Page</h1>
+    <h1>About Us Page</h1>
     <p>
       Donec a volutpat quam. Curabitur nec varius justo, sed rutrum ligula. Curabitur pellentesque
       turpis sit amet eros iaculis, a mollis arcu dictum. Ut vel ante eget massa ornare placerat.
@@ -18,4 +18,4 @@ const Feedback = () => (
   </div>
 );
 
-export default Feedback;
+export default About;

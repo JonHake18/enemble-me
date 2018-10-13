@@ -44,13 +44,13 @@ const Nav = () => (
           </Link>
       </NavListItem>
       <NavListItem>
-        <Link to="/team" className={window.location.pathname === "/team" ? "nav-link active" : "nav-link"}>
-          Team
+        <Link to="/about" className={window.location.pathname === "/about" ? "nav-link active" : "nav-link"}>
+          About Us
           </Link>
       </NavListItem>
       <NavListItem>
-        <Link to="/feedback" className={window.location.pathname === "/feedback" ? "nav-link active" : "nav-link"}>
-          Feedback
+        <Link to="/team" className={window.location.pathname === "/team" ? "nav-link active" : "nav-link"}>
+          Team
           </Link>
       </NavListItem>
       <NavListItem>
