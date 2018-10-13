@@ -123,7 +123,7 @@ class Signup extends Component {
 								className="form-control"
 								id="inputInstrument"
 								placeholder="Instrument Played"
-								name="instument"
+								name="instrument"
 								value={this.state.instrument}
 								onChange={this.handleChange}
 							/>
