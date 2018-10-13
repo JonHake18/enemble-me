@@ -1,7 +1,7 @@
 import React from "react";
 
 const Button = props => (
-    <button className={"btn " + props.className}>
+    <button className={"btn-outline-secondary external " + props.className}>
         {props.label}
     </button>
 );

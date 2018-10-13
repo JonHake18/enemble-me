@@ -12,3 +12,15 @@
 .team-submit {
     margin: 5px;
 }
+
+.col-sm-6 {
+    margin: auto auto; 
+}
+.col-sm-3 {
+    margin: auto auto; 
+}
+
+.external {
+    font-size: 2vh;
+}
+
