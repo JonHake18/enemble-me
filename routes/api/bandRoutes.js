@@ -4,7 +4,7 @@ const bandsController = require("../../controller/bandsController");
 
 // Matches with "/api/bands"
 router.route(`/:APIkey=${process.env.APIkey}`)
-  .get(bandsController.findAll)
+  .get(bandsController.search)
   .post(bandsController.create);
 
 // Matches with "/api/bands/:id"
