@@ -21,7 +21,7 @@ const App = () => (
     <Router>
       <div>
         <Nav />
-        <div class="container rounded border border-secondary shadow p-3 mb-5">
+        <div className="container rounded border border-secondary shadow p-3 mb-5">
           <Route exact path="/" component={Home} />
           <Route exact path="/team" component={Team} />
           <Route exact path="/about" component={About} />
