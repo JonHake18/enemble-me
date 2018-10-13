@@ -76,4 +76,66 @@ describe("POST /api/musician", function() {
         // The `done` function is used to end any asynchronous tests
         done();
       });
+      it('should also find the associated User document in the database and update the document with the "musicianInfo"', function(done){
+        let testUser = {
+            username: "ZoeyRed",
+            email: "zoeyRed@email.com",
+            password: "likesCats",
+            isMusician: false
+         };
+         db.User.create(testUser, (error, result)=>{
+          if(error) {
+            throw new Error(`Could not create Test User for testing: ${error}`);
+          }
+          let testMusician = {
+            firstName: "Zoey",
+            lastName: "RedVest",
+            location: "Buffalo, NY",
+            instrumentsPlayed: [
+                {
+                      instrument: "trumpet",
+                      yearsExp: 3
+                },
+                {
+                      instrument: "harmonica",
+                      yearsExp: 1
+                },
+                {
+                      instrument: "piano",
+                      yearsExp: 5
+                }
+            ],
+            videoUrl: "https://www.youtube.com/watch?v=A71aqufiNtQ",
+            userInfo: result._id
+          };         
+          // Run assertions on the response
+          request
+            .post(`/api/musicians`)
+            .send(testMusician)
+            .end((err, results)=>{
+                var responseStatus = results.status;
+                var responseBody = results.body;
+
+                db.User.findById(responseBody.userInfo)
+                .then(result=>{
+                  // Run assertions on the response
+
+                    expect(err).to.be.null;
+
+                    expect(responseStatus).to.equal(200);
+
+                    expect(responseBody)
+                      .to.be.an("object")
+                      .that.includes(testMusician);
+
+                    expect(result)
+                      .to.be.an("object")
+                      .that.includes({
+                        musicianInfo: responseBody._id
+                      })
+                })
+            });
+          });
+          done();
+      });
 });
