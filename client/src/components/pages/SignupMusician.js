@@ -12,8 +12,8 @@ class Signup extends Component {
 			firstName: '',
 			lastName: '',
 			email: '',
+			experience: '',
 			videoLink: '',
-			username: '',
 			password: '',
 			passwordConfirm: '',
 			instrument: '',
@@ -32,13 +32,14 @@ class Signup extends Component {
 		event.preventDefault()
 		// TODO - validate!
 		axios
-			.post('/auth/signup', {
+			.post('/api/musicians/signup', {
 				firstName: this.state.firstName,
 				lastName: this.state.lastName,
 				password: this.state.password,
 				passwordConfirm: this.state.passwordConfirm,
 				videoLink: this.state.videoLink,
 				email: this.state.email,
+				experience: this.state.experience,
 				location: this.state.location,
 				instrument: this.state.instrument
 			})
@@ -96,9 +97,9 @@ class Signup extends Component {
 								<input
 									type="text"
 									className="form-control"
-									id="inputLasttName"
+									id="inputLastName"
 									placeholder="Last Name"
-									name="lasttName"
+									name="lastName"
 									value={this.state.lastName}
 									onChange={this.handleChange}
 								/>
@@ -121,7 +122,7 @@ class Signup extends Component {
 									className="form-control"
 									id="inputInstrument"
 									placeholder="Instrument Played"
-									name="instument"
+									name="instrument"
 									value={this.state.instrument}
 									onChange={this.handleChange}
 								/>
