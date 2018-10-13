@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-//const bcrypt = require('bcryptjs')
+// const bcrypt = require('bcryptjs');
 
 
 // Save a reference to the Schema constructor
@@ -35,15 +35,10 @@ var MusicianSchema = new Schema({
     required: false,
     default: null
   },
-  experience: {
-    type: String,
-    required: false,
-    default: null
-  },
-  local: {
-		email: { type: String, unique: false, required: false },
-		password: { type: String, unique: false, required: false }
-	},
+  // local: {
+	// 	email: { type: String, unique: false, required: false },
+	// 	password: { type: String, unique: false, required: false }
+	// },
 });
 
 // Define schema methods
