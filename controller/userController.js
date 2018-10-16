@@ -1,5 +1,7 @@
 const db = require("../models");
+const mongoose = require("mongoose");
 const User = db.User;
+const Band = db.Band;
 const Musician = db.Musician;
 const Instrument = db.Instrument;
 
@@ -20,13 +22,13 @@ module.exports = {
                     .catch(err => res.status(422).json(err));
           },
      signup: function(req, res) {
-            let newUser = {
+            let newUser = new User({
                 _id: new mongoose.Types.ObjectId(),
                 username: `${req.body.firstName} ${req.body.lastName}`,
                 email: req.body.email,
-                password: req.query.password,
-                isMusician: req.query.isMusician,
-               }
+                password: req.body.password,
+                isMusician: req.body.isMusician,
+               });
             if(newUser.isMusician){
                   let instrumentPlayed = req.body.instruments;
                   let newMusician = new Musician({
@@ -63,7 +65,7 @@ module.exports = {
                                     Musician.findById(newMusician._id)
                                     .populate("instrumentsPlayed")
                                     .then(result=>{
-                                          console.log(result);                   
+                                          console.log(`New Musician Document Created:\n\t${result}`);                   
                                     })
                                     .catch(err=> {
                                           throw new Error(`\nCould not Retrieve the newly Created Musician:\n\t${err}`);
@@ -76,48 +78,57 @@ module.exports = {
                   let instrumentsDesired = req.body.instruments;
                   let newBand = new Band({
                         _id: new mongoose.Types.ObjectId(),
-                        bandName: req.body.firstName,
-                        location: req.body.location,
+                        bandName: req.body.bandName,
+                        location: `${req.body.city}, ${req.body.state}`,
                         musicGenre: req.body.genre,
-                        bandVideoLink: req.body.videoUrl,
+                        bandVideoLink: req.body.bandVideoLink,
                         instrumentsDesired: [],
                         userInfo: newUser._id
                   });
                   newUser.bandInfo = newBand._id;
-                  instrumentsDesired.forEach(element=>{
-                        let newInstrument = new Instrument({
-                              _id: new mongoose.Types.ObjectId(),
-                              instrument: element.instrument,
-                              yearsExp: element.yearsExp,
-                              isMusician: false,
-                              bandInfo: newBand._id
-                        });
-                        newBand.instrumentsDesired.push(newInstrument);
-                        newInstrument.save((err=>{
-                              if(err) throw new Error(`\nCould Not Save new Instrument ${newInstrument}:\n\t${err}`);    
-                        }));
-                  });
-                  newBand.save((err=>{
-                        if(err) throw new Error(`\nCould Not Save new Musician ${newMusician}:\n\t${err}`)
-                        Band.findById(newBand._id)
-                        .populate("instrumentsDesired")
-                        .then(result=>{
-                              res.json(result);
-                              db.User.findByIdAndUpdate(req.body.userId,{
-                                    bandInfo: result._id
-                              })
-                              .then(result=>{
-                                    console.log(`\nUser Information updated...\n`);
-                              })
-                              .catch(err=>{
-                                    throw new Error(`\nCould Not update User Information:\n\t${err}`);
-                              })
-                              
-                        })
-                        .catch(err=> {
-                              throw new Error(`\nCould not Retrieve the newly Created Musician:\n\t${err}`);
-                        })
-                  }));
+                  newUser.save((err, savedUser)=>{
+                        if(err){
+                              throw new Error(`Could Not Save New User:\n\t${err}`);
+                        }
+                        else{
+                              res.json(savedUser);
+                              instrumentsDesired.forEach(element=>{
+                              let newInstrument = new Instrument({
+                                    _id: new mongoose.Types.ObjectId(),
+                                    instrument: element.instrument,
+                                    yearsExp: element.yearsExp,
+                                    isMusician: false,
+                                    bandInfo: newBand._id
+                              });
+                              newBand.instrumentsDesired.push(newInstrument);
+                              newInstrument.save((err=>{
+                                    if(err) throw new Error(`\nCould Not Save new Instrument ${newInstrument}:\n\t${err}`);    
+                              }));
+                              });
+                              newBand.save((err=>{
+                                    if(err) throw new Error(`\nCould Not Save new Musician ${newMusician}:\n\t${err}`)
+                                    Band.findById(newBand._id)
+                                    .populate("instrumentsDesired")
+                                    .then(result=>{
+                                          res.json(result);
+                                          db.User.findByIdAndUpdate(req.body.userId,{
+                                                bandInfo: result._id
+                                          })
+                                          .then(result=>{
+                                                console.log(`\nUser Information updated...\n`);
+                                          })
+                                          .catch(err=>{
+                                                throw new Error(`\nCould Not update User Information:\n\t${err}`);
+                                          })
+                                          
+                                    })
+                                    .catch(err=> {
+                                          throw new Error(`\nCould not Retrieve the newly Created Musician:\n\t${err}`);
+                                    })
+                              }));   
+                        }
+                  })
+                  
             }
          },
      update: function(req, res) {

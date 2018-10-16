@@ -41,27 +41,6 @@ var MusicianSchema = new Schema({
 	// },
 });
 
-// Define schema methods
-MusicianSchema.methods = {
-	checkPassword: function(inputPassword) {
-		return bcrypt.compareSync(inputPassword, this.local.password)
-	},
-	hashPassword: plainTextPassword => {
-		return bcrypt.hashSync(plainTextPassword, 10)
-	}
-}
-
-// Define hooks for pre-saving
-MusicianSchema.pre('save', function(next) {
-	if (!this.local.password) {
-		console.log('=======NO PASSWORD PROVIDED=======')
-		next()
-	} else {
-		this.local.password = this.hashPassword(this.local.password)
-		next()
-	}
-})
-
 
 // This creates our model from the above schema, using mongoose's model method
 var Musician = mongoose.model("Musician", MusicianSchema);

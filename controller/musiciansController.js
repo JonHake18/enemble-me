@@ -90,7 +90,7 @@ module.exports = {
                   })
             }));
       },
-      update: function(req, res) {
+      update: function(req, res) { 
           db.Musician
             .findOneAndUpdate({ _id: req.params.id }, req.body)
             .then(dbModel => res.json(dbModel))

@@ -17,8 +17,8 @@ router
   .put(musiciansController.update)
   .delete(musiciansController.remove);
 
-router.route(`/signup`)
-  .post(musiciansController.signup)
-  .get(musiciansController.login);
+// router.route(`/signup`)
+//   .post(musiciansController.signup)
+//   .get(musiciansController.login);
 
 module.exports = router;
