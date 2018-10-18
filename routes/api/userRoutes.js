@@ -3,9 +3,9 @@ const router = require("express").Router();
 const userController = require("../../controller/userController.js");
 
 // Matches with "/api/user"
-router.route(`/:APIkey=${process.env.APIkey}`)
+router.route(`/APIkey=${process.env.APIkey}`)
   .get(userController.findAll)
-  .post(userController.create);
+  .post(userController.signup);
 
 // Matches with "/api/user/:id"
 router

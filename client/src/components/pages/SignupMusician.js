@@ -35,17 +35,21 @@ class Signup extends Component {
 	handleSubmit(event) {
 		event.preventDefault()
 		// TODO - validate!
+		// Working with the data structure present below. API can accomodate multiple intrument objects
 		axios
-			.post('http://localhost:3001/auth/signup', {
+			.post('http://localhost:3001/api/user/APIkey=Yjklasjen38820jdk', {
 				firstName: this.state.firstName,
 				lastName: this.state.lastName,
 				password: this.state.password,
 				passwordConfirm: this.state.passwordConfirm,
 				videoLink: this.state.videoLink,
 				email: this.state.email,
-				experience: this.state.experience,
 				location: this.state.location,
-				instrument: this.state.instrument,
+				instruments: [
+					{
+					instrument: this.state.instrument,
+					yearsExp: this.state.experience
+				}],
 				isMusician: this.state.isMusician
 			})
 			.then(response => {
@@ -58,6 +62,9 @@ class Signup extends Component {
 				} else {
 					console.log('duplicate')
 				}
+			})
+			.catch(err =>{
+				console.log(err);
 			})
 	}
 
@@ -99,9 +106,9 @@ class Signup extends Component {
 							<input
 								type="text"
 								className="form-control"
-								id="inputLasttName"
+								id="inputLastName"
 								placeholder="Last Name"
-								name="lasttName"
+								name="lastName"
 								value={this.state.lastName}
 								onChange={this.handleChange}
 							/>

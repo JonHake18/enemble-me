@@ -1,4 +1,5 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 
 // Save a reference to the Schema constructor
 var Schema = mongoose.Schema;
@@ -38,8 +39,29 @@ var UserSchema = new Schema({
   }
 });
 
+// Define schema methods
+UserSchema.methods = {
+	checkPassword: function(inputPassword) {
+		return bcrypt.compareSync(inputPassword, this.password)
+	},
+	hashPassword: plainTextPassword => {
+		return bcrypt.hashSync(plainTextPassword, 10)
+	}
+}
+
+// Define hooks for pre-saving
+UserSchema.pre('save', function(next) {
+	if (!this.password) {
+		console.log('=======NO PASSWORD PROVIDED=======')
+		next()
+	} else {
+		this.password = this.hashPassword(this.password)
+		next()
+	}
+})
+
 // This creates our model from the above schema, using mongoose's model method
-var User = mongoose.model("User", UserSchema);
+const User = mongoose.model("User", UserSchema);
 
 // Export the Article model
 module.exports = User;

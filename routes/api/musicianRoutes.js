@@ -1,8 +1,7 @@
 require("dotenv");
-
+const db = require("../../models");
 const router = require("express").Router();
 const musiciansController = require("../../controller/musiciansController");
-const musician = require('../../models/musicians');
 const User = require('../../models/user');
 //const passport = require('../../passport');
 
@@ -18,43 +17,8 @@ router
   .put(musiciansController.update)
   .delete(musiciansController.remove);
 
-  router.post('/signup', (req, res) => {
-    const {
-      firstName,
-      lastName,
-      password,
-      passwordConfirm,
-      email,
-      location,
-      videoLink,
-      experience,
-      instrument
-    } = req.body
-
-    // ADD VALIDATION
-    User.findOne({
-      'local.email': email
-    }, (err, userMatch) => {
-      if (userMatch) {
-        return res.json({
-          error: `Sorry, already a user with the email: ${email}`
-        })
-      }
-      const newUser = new User({
-        'firstName': firstName,
-        'lastName': lastName,
-        'local.password': password,
-        'videoLink': videoLink,
-        'experience': experience,
-        'instrument': instrument,
-        'location': location,
-        'local.email': email
-      })
-      newUser.save((err, savedUser) => {
-        if (err) return res.json(err)
-        return res.json(savedUser)
-      })
-    })
-  })
+// router.route(`/signup`)
+//   .post(musiciansController.signup)
+//   .get(musiciansController.login);
 
 module.exports = router;

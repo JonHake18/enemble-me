@@ -1,5 +1,6 @@
 const db = require("../models");
 const mongoose = require("mongoose");
+const Musician = db.Musician;
 const Band = db.Band;
 const Instrument = db.Instrument
 
@@ -38,16 +39,17 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     create: function(req, res) {
-      let instrumentsDesired = req.body.instruments;
+      let instrumentsDesired = req.body.instruments; 
       let newBand = new Band({
             _id: new mongoose.Types.ObjectId(),
-            bandName: req.body.firstName,
+            bandName: req.body.bandName,
             location: req.body.location,
-            musicGenre: req.body.genre,
+            musicGenre: req.body.musicGenre,
             bandVideoLink: req.body.videoUrl,
             instrumentsPlayed: [],
-            userInfo: req.body.userId
+            userInfo: req.body.userId,
       });
+
       instrumentsDesired.forEach(element=>{
             let newInstrument = new Instrument({
                   _id: new mongoose.Types.ObjectId(),
@@ -62,7 +64,7 @@ module.exports = {
             }));
       });
       newBand.save((err=>{
-            if(err) throw new Error(`\nCould Not Save new Musician ${newMusician}:\n\t${err}`)
+            if(err) throw new Error(`\nCould Not Save new Band ${newBand}:\n\t${err}`)
             Band.findById(newBand._id)
             .populate("instrumentsDesired")
             .then(result=>{
@@ -85,8 +87,8 @@ module.exports = {
     },
     search: function(req, res) {
       let bandQuery={};
-      if(req.query.location !== undefined) musicQuery.location = req.query.location;
-      if(req.query.genre !== undefined) musicQuery.genre = req.query.genre;
+      if(req.query.location !== undefined) bandQuery.location = req.query.location;
+      if(req.query.genre !== undefined) bandQuery.musicGenre = req.query.genre;
       let instruments = (req.query.instruments !== undefined)? req.query.instruments.split(","):[/^\S/];
       let exp = (req.query.exp !== undefined)? Number(req.query.exp): 0;
       console.log(JSON.stringify(bandQuery) + '\n' + instruments +'\n' + exp);

@@ -1,12 +1,10 @@
 const path = require("path");
 const router = require("express").Router();
 const apiRoutes = require("./api");
-const musicianSignupRoutes = require("./api/musicianRoutes");
 
 
 // API Routes
 router.use("/api", apiRoutes);
-router.use("/auth", musicianSignupRoutes);
 
 
 // If no API routes are hit, send the React app

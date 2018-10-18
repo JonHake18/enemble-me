@@ -1,6 +1,7 @@
 const db = require("../models");
 const Musician = db.Musician;
 const Instrument = db.Instrument;
+const User = db.User;
 const mongoose = require("mongoose");
 
 function filterInstruments(results, instrumentArr, exp){
@@ -89,15 +90,16 @@ module.exports = {
                   })
             }));
       },
-      update: function(req, res) {
+      update: function(req, res) { 
           db.Musician
             .findOneAndUpdate({ _id: req.params.id }, req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
       },
       search: function(req, res) {
+            console.log(`I'm Searching for a Musician!!!`);
             let musicQuery={};
-            if(req.query.location !== undefined) musicQuery.location = req.query.location;
+            if(req.query.city !== undefined && req.query.state !== undefined) musicQuery.location = `${req.query.city}, ${req.query.state}`;
             if(req.query.genre !== undefined) musicQuery.genre = req.query.genre;
             let instruments = (req.query.instruments !== undefined)? req.query.instruments.split(","):[/^\S/];
             let exp = (req.query.exp !== undefined)? Number(req.query.exp): 0;
