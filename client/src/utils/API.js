@@ -31,7 +31,17 @@ example:
 }
 */
 export default {
+	signupNewUser: function(userObj){
+		return axios.post(`/api/user/APIkey=${process.env.APIkey}`)
+	},
+	
      searchMusicians: function(queryObj){
           return axios.get(`/api/musicians/APIkey=${process.env.APIkey}`)
-     }
+	},
+	
+	searchBands: function(queryObj){
+		return axios.get(`/api/bands/APIkey=${process.env.APIkey}`)
+	},
+
+
 }
