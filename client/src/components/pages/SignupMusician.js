@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import DropdownList from "../Form/DropdownList";
 import city_names from "../Arrays/Cities";
 import state_names from "../Arrays/States";
+import API from "../../utils/API.js";
 
 
 class Signup extends Component {
@@ -36,36 +37,66 @@ class Signup extends Component {
 		event.preventDefault()
 		// TODO - validate!
 		// Working with the data structure present below. API can accomodate multiple intrument objects
-		axios
-			.post('http://localhost:3001/api/user/APIkey=Yjklasjen38820jdk', {
-				firstName: this.state.firstName,
-				lastName: this.state.lastName,
-				password: this.state.password,
-				passwordConfirm: this.state.passwordConfirm,
-				videoLink: this.state.videoLink,
-				email: this.state.email,
-				location: this.state.location,
-				instruments: [
-					{
-					instrument: this.state.instrument,
-					yearsExp: this.state.experience
-				}],
-				isMusician: this.state.isMusician
-			})
-			.then(response => {
-				console.log(response)
-				if (!response.data.errmsg) {
-					console.log('youre good')
-					this.setState({
-						redirectTo: '/login'
-					})
-				} else {
-					console.log('duplicate')
-				}
-			})
-			.catch(err =>{
-				console.log(err);
-			})
+		// axios
+		// 	.post('http://localhost:3001/api/user/APIkey=Yjklasjen38820jdk', {
+		// 		firstName: this.state.firstName,
+		// 		lastName: this.state.lastName,
+		// 		password: this.state.password,
+		// 		passwordConfirm: this.state.passwordConfirm,
+		// 		videoLink: this.state.videoLink,
+		// 		email: this.state.email,
+		// 		location: this.state.location,
+		// 		instruments: [
+		// 			{
+		// 			instrument: this.state.instrument,
+		// 			yearsExp: this.state.experience
+		// 			}
+		// 		],
+		// 		isMusician: this.state.isMusician
+		// 	})
+		// 	.then(response => {
+		// 		console.log(response)
+		// 		if (!response.data.errmsg) {
+		// 			console.log('youre good')
+		// 			this.setState({
+		// 				redirectTo: '/login'
+		// 			})
+		// 		} else {
+		// 			console.log('duplicate')
+		// 		}
+		// 	})
+		// 	.catch(err =>{
+		// 		console.log(err);
+		// 	})
+		API.newUserSignup({
+					firstName: this.state.firstName,
+					lastName: this.state.lastName,
+					password: this.state.password,
+					passwordConfirm: this.state.passwordConfirm,
+					videoLink: this.state.videoLink,
+					email: this.state.email,
+					location: this.state.location,
+					instruments: [
+						{
+						instrument: this.state.instrument,
+						yearsExp: this.state.experience
+					}],
+					isMusician: this.state.isMusician
+				})
+				.then(response => {
+							console.log(response)
+							if (!response.data.errmsg) {
+								console.log('youre good')
+								this.setState({
+									redirectTo: '/login'
+								})
+							} else {
+								console.log('duplicate')
+							}
+						})
+						.catch(err =>{
+							console.log(err);
+						})
 	}
 
 

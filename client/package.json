@@ -4,7 +4,6 @@
   "main": "index.js",
   "repository": "https://github.com/JonHake18/ensemble-me.git",
   "author": "Matthew Kelly, Bradley , Jonathan Hake",
-  "proxy": "http://localhost:3001/",
   "license": "MIT",
   "dependencies": {
     "auth0-js": "^9.8.0",

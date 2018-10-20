@@ -4,7 +4,7 @@ const QueryString = require("querystring");
 
 
 function urlQueryString(json){
-	let querystring = "";
+	let queryString = "";
 	let key;
 	for(key in json){
 		queryString += `${key}=`;
@@ -18,9 +18,9 @@ function urlQueryString(json){
 		}
 		queryString += `&`;
 	}
-	querystring = QueryString.stringify(querystring.slice(0, -1));
-	console.log(querystring);
-	return querystring;
+	queryString = QueryString.stringify(queryString.slice(0, -1));
+	console.log(queryString);
+	return queryString;
 }
 
 
