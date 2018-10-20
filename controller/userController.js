@@ -147,43 +147,4 @@ module.exports = {
                     .then(dbModel => res.json(dbModel))
                     .catch(err => res.status(422).json(err));
          },
-      // signup: function(req, res) {
-      //       const {
-      //         firstName,
-      //         lastName,
-      //         password,
-      //         email,
-      //         location,
-      //         videoLink,
-      //         instrumentsPlayed
-      //       } = req.body
-        
-      //       // ADD VALIDATION
-      //       db.User.findOne({
-      //         'email': email
-      //       }, (err, userMatch) => {
-      //             if(err){
-      //                   throw new Error(`Could Not Complete Validation for Unique Email value:\n\t${err}`);
-      //             }
-      //             else if (userMatch) {
-      //                   return res.json({
-      //                         error: `Sorry, already a user with the email: ${email}`
-      //                   })
-      //             }
-      //             const newUser = new User({
-      //                   _id: new mongoose.Types.ObjectId(),
-      //                   username: `${firstName} ${lastName}`,
-      //                   password: password,
-      //                   isMusician: true,
-      //                   email: email
-      //             });
-      //             let reqCopy = req;
-      //             reqCopy.body.userId = newUser_id;
-      //             newUser.save((err, savedUser) => {
-      //                   if (err) return res.json(err)
-      //                   this.create(reqCopy, res);
-      //                   return res.json(savedUser)
-      //             })
-      //       })
-      // }
 };

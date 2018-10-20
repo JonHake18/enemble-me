@@ -82,6 +82,4 @@ export default {
 	getAllUsers: function(){
 		return axios.get(`api/musicians/APIkey=${process.env.APIkey}`)
 	}
-
-
 }
