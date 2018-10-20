@@ -11,6 +11,9 @@ module.exports = {
                db.User
                     .find(req.body)
                     .populate("musicianInfo")
+                    .populate("bandInfo")
+                    .populate("instrumentsPlayed")
+                    .populate("instrumentsDesired")
                     .then(dbModel => res.json(dbModel))
                     .catch(err => res.status(422).json(err));
           },
