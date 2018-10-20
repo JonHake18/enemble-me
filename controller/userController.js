@@ -11,6 +11,9 @@ module.exports = {
                db.User
                     .find(req.body)
                     .populate("musicianInfo")
+                    .populate("bandInfo")
+                    .populate("instrumentsPlayed")
+                    .populate("instrumentsDesired")
                     .then(dbModel => res.json(dbModel))
                     .catch(err => res.status(422).json(err));
           },
@@ -22,6 +25,7 @@ module.exports = {
                     .catch(err => res.status(422).json(err));
           },
      signup: function(req, res) {
+           console.log(`Building New User Document`);
             let newUser = new User({
                 _id: new mongoose.Types.ObjectId(),
                 username: `${req.body.firstName} ${req.body.lastName}`,
@@ -30,23 +34,27 @@ module.exports = {
                 isMusician: req.body.isMusician,
                });
             if(newUser.isMusician){
+                  console.log(`New User is a Musician`);
                   let instrumentPlayed = req.body.instruments;
+                  console.log(`Building New Musician Document`);
                   let newMusician = new Musician({
                         _id: new mongoose.Types.ObjectId(),
                         firstName: req.body.firstName,
                         lastName: req.body.lastName,
-                        location: `${req.body.city}, ${req.body.state}`,
+                        location: req.body.location,
                         videoLink: req.body.videoLink,
                         instrumentsPlayed: [],
                         userInfo: newUser._id
                   });
                   newUser.musicianInfo = newMusician._id;
+                  console.log(`Saving New User Document`);
                   newUser.save((err, savedUser)=>{
                         if(err){
                               throw new Error(`Could not save new User:\n\t${err}`);
                         }
                         else{
                               res.json(savedUser);
+                              console.log(`Building New Intrument Documents`);
                               instrumentPlayed.forEach(element=>{
                                     let newInstrument = new Instrument({
                                           _id: new mongoose.Types.ObjectId(),
@@ -56,10 +64,12 @@ module.exports = {
                                           musicianInfo: newMusician._id
                                     });
                                     newMusician.instrumentsPlayed.push(newInstrument);
+                                    console.log(`Saving new Instrument Document`);
                                     newInstrument.save((err=>{
                                           if(err) throw new Error(`\nCould Not Save new Instrument ${newInstrument}:\n\t${err}`);    
                                     }));
                               });
+                              console.log(`Saving New Musician Document`);
                               newMusician.save((err=>{
                                     if(err) throw new Error(`\nCould Not Save new Musician ${newMusician}:\n\t${err}`)
                                     Musician.findById(newMusician._id)
