@@ -19,9 +19,9 @@ import Login from "./containers/LoginPage.jsx";
 import LogoutFunction from './containers/LogoutFunction.jsx';
 import SignUpPageMusician from './containers/SignUpPageMusician.jsx';
 import SignUpPageBand from './containers/SignUpPageBand.jsx';
-import Profile from "./components/pages/Profile";
 import Auth from './modules/Auth';
 import './App.css';
+import DashboardPage from './containers/DashboardPage.jsx';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
@@ -55,13 +55,15 @@ const PropsRoute = ({ component: Component, ...rest }) => (
   )}/>
 )
 
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      authenticated: false
+      authenticated: false,
+      isMusician: false
     }
-  };
+    };
 
   componentDidMount() {
     // check if user is logged in on refresh
@@ -73,13 +75,14 @@ class App extends Component {
     this.setState({ authenticated: Auth.isUserAuthenticated() })
   }
 
+  
 
   render() {
     return (
   <Wrapper>
     <Router>
       <div>
-        
+
         {this.state.authenticated ? (
           <Nav2 />
           ) : (
@@ -91,14 +94,17 @@ class App extends Component {
           <LoggedOutRoute path="/login" component={Login} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />
           <Route exact path="/team" component={Team} />
           <Route exact path="/about" component={About} />
-          <PrivateRoute exact path="/bandprofile" component={BandProfile} />
-          <PrivateRoute exact path="/musicianprofile" component={MusicianProfile} />
+          {this.state.isMusician ? (
+            <PrivateRoute exact path="/profile" component={MusicianProfile} />
+          ) : (
+            <PrivateRoute exact path="/profile" component={BandProfile} />
+          )}
           <Route exact path="/findmusician" component={FindMusician} />
           <Route exact path="/findband" component={FindBand} />
           <Route exact path="/contact" component={Contact} />
           <LoggedOutRoute path="/signupmusician" component={SignUpPageMusician}/>
           <LoggedOutRoute path="/signupband" component={SignUpPageBand}/>
-          <PrivateRoute exact path="/profile" component={Profile} />
+          <PrivateRoute exact path="/dashboard" component={DashboardPage} />
           <Route path="/logout" component={LogoutFunction}/>
         </div>
       </div>

@@ -4,11 +4,14 @@ import "./Nav.css";
 import NavList from "../List/NavList";
 import NavListItem from "../List/NavListItem";
 import Brand from "./Brand";
-import LogoutFunction from '../../containers/LogoutFunction.jsx';
 
 
 
-const Nav2 = () => (
+
+
+
+
+const Nav2 = ({user}) => (
   <nav className="navbar navbar-expand-lg navbar-light">
     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +34,6 @@ const Nav2 = () => (
           </Link>
       </NavListItem>
       <NavListItem>
-        
         <Link to="/logout" className={window.location.pathname === "/logout" ? "nav-link active" : "nav-link"}>
           Log Out
           </Link>
@@ -42,9 +44,11 @@ const Nav2 = () => (
     </Brand>
     <NavList>
       <NavListItem>
-        <Link to="/signupband" className={window.location.pathname === "/signupband" ? "nav-link active" : "nav-link"}>
-          Sign up
-          </Link>
+
+           <Link to="/profile" className={window.location.pathname === "/profile" ? "nav-link active" : "nav-link"}>
+           Your Profile
+           </Link>
+
       </NavListItem>
       <NavListItem>
         <Link to="/about" className={window.location.pathname === "/about" ? "nav-link active" : "nav-link"}>
@@ -64,5 +68,8 @@ const Nav2 = () => (
     </NavList>
   </nav>
 );
+
+
+
 
 export default Nav2;
