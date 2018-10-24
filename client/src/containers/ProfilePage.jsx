@@ -1,9 +1,9 @@
 import React from 'react';
 import Auth from '../modules/Auth';
-import Dashboard from '../components/pages/Dashboard.jsx';
+import Profile from '../components/pages/Profile.jsx';
 
 
-class DashboardPage extends React.Component {
+class ProfilePage extends React.Component {
 
   /**
    * Class constructor.
@@ -22,7 +22,7 @@ class DashboardPage extends React.Component {
    */
   componentDidMount() {
     const xhr = new XMLHttpRequest();
-    xhr.open('get', '/api/dashboard');
+    xhr.open('get', '/api/profile');
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     // set the authorization HTTP header
     xhr.setRequestHeader('Authorization', `bearer ${Auth.getToken()}`);
@@ -42,9 +42,9 @@ class DashboardPage extends React.Component {
    * Render the component.
    */
   render() {
-    return (<Dashboard secretData={this.state.secretData} user={this.state.user} />);
+    return (<Profile secretData={this.state.secretData} user={this.state.user} />);
   }
 
 }
 
-export default DashboardPage;
+export default ProfilePage;

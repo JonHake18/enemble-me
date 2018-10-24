@@ -9,8 +9,6 @@ import Nav from "./components/Nav/Nav";
 import Nav2 from "./components/Nav/Nav2";
 import Home from "./components/pages/Home";
 import Team from "./components/pages/Team";
-import BandProfile from "./components/pages/BandProfile";
-import MusicianProfile from "./components/pages/MusicianProfile";
 import FindMusician from "./components/pages/FindMusician";
 import FindBand from "./components/pages/FindBand";
 import About from "./components/pages/About";
@@ -21,7 +19,7 @@ import SignUpPageMusician from './containers/SignUpPageMusician.jsx';
 import SignUpPageBand from './containers/SignUpPageBand.jsx';
 import Auth from './modules/Auth';
 import './App.css';
-import DashboardPage from './containers/DashboardPage.jsx';
+import ProfilePage from './containers/ProfilePage.jsx';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
@@ -94,17 +92,12 @@ class App extends Component {
           <LoggedOutRoute path="/login" component={Login} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />
           <Route exact path="/team" component={Team} />
           <Route exact path="/about" component={About} />
-          {this.state.isMusician ? (
-            <PrivateRoute exact path="/profile" component={MusicianProfile} />
-          ) : (
-            <PrivateRoute exact path="/profile" component={BandProfile} />
-          )}
+          <PrivateRoute exact path="/profile" component={ProfilePage} />
           <Route exact path="/findmusician" component={FindMusician} />
           <Route exact path="/findband" component={FindBand} />
           <Route exact path="/contact" component={Contact} />
           <LoggedOutRoute path="/signupmusician" component={SignUpPageMusician}/>
           <LoggedOutRoute path="/signupband" component={SignUpPageBand}/>
-          <PrivateRoute exact path="/dashboard" component={DashboardPage} />
           <Route path="/logout" component={LogoutFunction}/>
         </div>
       </div>
