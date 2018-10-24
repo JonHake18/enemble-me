@@ -27,7 +27,9 @@ class SignUpPageBand extends React.Component {
         password: '',
         isMusician: false,
         city: '',
-        state: ''
+        state: '',
+        firstName: '',
+        lastName: ''
       }
     };
 
@@ -47,6 +49,8 @@ class SignUpPageBand extends React.Component {
 
     // create a string for an HTTP body message
     const bandName = encodeURIComponent(this.state.user.bandName);
+    const firstName = encodeURIComponent(this.state.user.firstName);
+    const lastName = encodeURIComponent(this.state.user.lastName);
     const bandDescription = encodeURIComponent(this.state.user.bandDescription);
     const instrument = encodeURIComponent(this.state.user.instrument);
     const musicGenre = encodeURIComponent(this.state.user.musicGenre);
@@ -57,7 +61,7 @@ class SignUpPageBand extends React.Component {
     const city = encodeURIComponent(this.state.user.city);
     const state = encodeURIComponent(this.state.user.state);
     const isMusician = encodeURIComponent(this.state.user.isMusician);
-    const formData = `bandName=${bandName}&isMusician=${isMusician}&bandDescription=${bandDescription}&state=${state}&city=${city}&musicGenre=${musicGenre}&instrument=${instrument}&experience=${experience}&videoLink=${videoLink}&email=${email}&password=${password}`;
+    const formData = `bandName=${bandName}&firstName=${firstName}&lastName=${lastName}&isMusician=${isMusician}&bandDescription=${bandDescription}&state=${state}&city=${city}&musicGenre=${musicGenre}&instrument=${instrument}&experience=${experience}&videoLink=${videoLink}&email=${email}&password=${password}`;
 console.log(formData)
     // create an AJAX request
     const xhr = new XMLHttpRequest();

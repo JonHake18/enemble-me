@@ -15,7 +15,15 @@ module.exports = new PassportLocalStrategy({
     password: password.trim(),
     instrument: req.body.instrument.trim(),
     experience: req.body.experience.trim(),
-    videoLink: req.body.videoLink.trim()
+    videoLink: req.body.videoLink.trim(),
+    firstName: req.body.firstName.trim(),
+    lastName: req.body.lastName.trim(),
+    bandName: req.body.bandName.trim(),
+    bandDescription: req.body.bandDescription.trim(),
+    musicGenre: req.body.musicGenre.trim(),
+    isMusician: req.body.isMusician.trim(),
+    city: req.body.city.trim(),
+    state: req.body.state.trim()
   };
 
   const newUser = new User(userData);

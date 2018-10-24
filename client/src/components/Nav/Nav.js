@@ -4,7 +4,7 @@ import "./Nav.css";
 import NavList from "../List/NavList";
 import NavListItem from "../List/NavListItem";
 import Brand from "./Brand";
-import LogoutFunction from '../../containers/LogoutFunction.jsx';
+
 
 
 
