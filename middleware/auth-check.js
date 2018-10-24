@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
-const User = require('mongoose').model('User');
-const config = require('../../config');
+const db = require('../models');
+const User = db.User;
+const config = require('../config');
 
 
 /**

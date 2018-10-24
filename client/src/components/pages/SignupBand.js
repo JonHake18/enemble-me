@@ -107,11 +107,11 @@ class Signup extends Component {
 							</div>
 							<div className="form-group col-md-2">
 							<label htmlFor="location">City: </label><br></br>
-							<DropdownList data={city_names} id="city-names"></DropdownList>
+							<DropdownList data={city_names} id="city-names" onChange={this.handleChange}></DropdownList>
 						</div>
 						<div className="form-group col-md-2">
 							<label htmlFor="location">State	: </label><br></br>
-							<DropdownList data={state_names} id="state-names"></DropdownList>
+							<DropdownList data={state_names} id="state-names" onChange={this.handleChange}></DropdownList>
 						</div>
 						</div>
 						<div className="form-row">
