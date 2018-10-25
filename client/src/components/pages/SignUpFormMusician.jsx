@@ -137,6 +137,7 @@ const SignUpFormMusician = ({
             className="form-control"
             placeholder="https://youtu.be/A71aqufiNtQ"
             name="videoLink"
+            filter="/?.*(?:youtu.be\\/|v\\/|u/\\w/|embed\\/|watch\\?.*&?v=)" 
             onChange={onChange}
             value={user.videoLink}
           />
