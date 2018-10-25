@@ -1,67 +1,66 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
-// Save a reference to the Schema constructor
-var Schema = mongoose.Schema;
-
-// Using the Schema constructor, create a new UserSchema object
-// This is similar to a Sequelize model
-var UserSchema = new Schema({
-  username: {
-     type: String,
-     required: true
-  },
+// define the User model schema
+const UserSchema = new mongoose.Schema({
   email: {
-     type: String,
-     unique: true,
-     required: true
+    type: String,
+    index: { unique: true }
   },
-  password: {
-     type: String,
-     required: true
-  },
-  isMusician: {
-       type: Boolean,
-       required: true, 
-       default: true
-  },
-  profile_Options: {
-     type: Schema.Types.ObjectId,
-     ref: "Options"
-  },
-  musicianInfo: {
-     type: Schema.Types.ObjectId,
-     ref: "Musician"
-  },
-  bandInfo: {
-       type: Schema.Types.ObjectId,
-       ref: "Band"
-  }
+  password: String,
+  firstName: String,
+  lastName: String,
+  videoLink: String,
+  bandName: String,
+  bandDescription: String,
+  musicGenre: String,
+  isMusician: Boolean,
+  city: String,
+  state: String,
+  instrumentsPlayed: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Instrument"
+  }],
+  instrumentsDesired: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Instrument"
+  }]
 });
 
-// Define schema methods
-UserSchema.methods = {
-	checkPassword: function(inputPassword) {
-		return bcrypt.compareSync(inputPassword, this.password)
-	},
-	hashPassword: plainTextPassword => {
-		return bcrypt.hashSync(plainTextPassword, 10)
-	}
-}
+/**
+ * Compare the passed password with the value in the database. A model method.
+ *
+ * @param {string} password
+ * @returns {object} callback
+ */
+UserSchema.methods.comparePassword = function comparePassword(password, callback) {
+  bcrypt.compare(password, this.password, callback);
+};
 
-// Define hooks for pre-saving
-UserSchema.pre('save', function(next) {
-	if (!this.password) {
-		console.log('=======NO PASSWORD PROVIDED=======')
-		next()
-	} else {
-		this.password = this.hashPassword(this.password)
-		next()
-	}
-})
 
-// This creates our model from the above schema, using mongoose's model method
-const User = mongoose.model("User", UserSchema);
+/**
+ * The pre-save hook method.
+ */
+UserSchema.pre('save', function saveHook(next) {
+  const user = this;
 
-// Export the Article model
-module.exports = User;
+  // proceed further only if the password is modified or the user is new
+  if (!user.isModified('password')) return next();
+
+
+  return bcrypt.genSalt((saltError, salt) => {
+    if (saltError) { return next(saltError); }
+
+    return bcrypt.hash(user.password, salt, (hashError, hash) => {
+      if (hashError) { return next(hashError); }
+
+      // replace a password string with hash value
+      user.password = hash;
+
+      return next();
+    });
+  });
+});
+
+
+module.exports = mongoose.model('User', UserSchema);
