@@ -43,6 +43,7 @@
     "prop-types": "^15.6.2",
     "querystring": "^0.2.0",
     "validator": "^10.8.0",
+    "youtube-embed-video": "^1.1.0",
     "youtube-player": "^5.5.1"
   },
   "devDependencies": {

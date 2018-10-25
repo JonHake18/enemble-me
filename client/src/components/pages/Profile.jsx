@@ -1,16 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import YoutubeEmbedVideo from "youtube-embed-video";
+
 
 
 const Profile = ({ secretData, user }) => (
   user.isMusician?
   <div className="content">
   <h1>MusicianProfile Page</h1>
-
-
-
-
-
   {<div>Welcome Musician: <strong>{user.firstName}</strong>!<br /></div>}
   {<div><strong>{user.lastName}</strong>!<br /></div>}
   {<div><strong>{user.city}</strong>!<br /></div>}
@@ -18,6 +15,7 @@ const Profile = ({ secretData, user }) => (
     {<div><strong>{user.instrument}</strong>!<br /></div>}
     {<div><strong>{user.experience}</strong>!<br /></div>}
     {<div><strong>{user.videoLink}</strong>!<br /></div>}
+    <YoutubeEmbedVideo size="medium" videoId={user.videoLink} className="video-player" style={{ borderWidth: 5, borderColor: '#ffffff', borderStyle: 'solid' }} suggestions={false} />
 </div>
   :
   <div className="content">
