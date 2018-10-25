@@ -8,7 +8,10 @@ import Brand from "./Brand";
 
 
 
-const Nav = () => (
+
+
+
+const Nav2 = ({user}) => (
   <nav className="navbar navbar-expand-lg navbar-light">
     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,9 +34,8 @@ const Nav = () => (
           </Link>
       </NavListItem>
       <NavListItem>
-        
-        <Link to="/login" className={window.location.pathname === "/login" ? "nav-link active" : "nav-link"}>
-          Log In
+        <Link to="/logout" className={window.location.pathname === "/logout" ? "nav-link active" : "nav-link"}>
+          Log Out
           </Link>
       </NavListItem>
     </NavList>
@@ -42,9 +44,11 @@ const Nav = () => (
     </Brand>
     <NavList>
       <NavListItem>
-        <Link to="/signupband" className={window.location.pathname === "/signupband" ? "nav-link active" : "nav-link"}>
-          Sign up
-          </Link>
+
+           <Link to="/profile" className={window.location.pathname === "/profile" ? "nav-link active" : "nav-link"}>
+           Your Profile
+           </Link>
+
       </NavListItem>
       <NavListItem>
         <Link to="/about" className={window.location.pathname === "/about" ? "nav-link active" : "nav-link"}>
@@ -65,4 +69,7 @@ const Nav = () => (
   </nav>
 );
 
-export default Nav;
+
+
+
+export default Nav2;
