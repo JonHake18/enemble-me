@@ -2,7 +2,7 @@ require ("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-
+const routes = require("./routes");
 const app = express();
 const passport = require('passport');
 const config = require('./config');
@@ -17,9 +17,6 @@ app.use(bodyParser.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-// Add routes for API
-const routes = require("./routes");
-app.use(routes);
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/ensembleMe", {useNewUrlParser: true});
@@ -40,6 +37,9 @@ passport.use('local-login', localLoginStrategy);
 // pass the authenticaion checker middleware
 const authCheckMiddleware = require('./middleware/auth-check');
 app.use('/api', authCheckMiddleware);
+
+// Add routes for API
+app.use(routes);
 
 // Start the API server
 app.listen(PORT, function() {

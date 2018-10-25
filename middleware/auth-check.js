@@ -19,9 +19,9 @@ module.exports = (req, res, next) => {
   return jwt.verify(token, config.jwtSecret, (err, decoded) => {
     // the 401 code is for unauthorized status
     if (err) { return res.status(401).end(); }
-
+    
     const userId = decoded.sub;
-
+    
     // check if a user exists
     return User.findById(userId, (userErr, user) => {
       if (userErr || !user) {
@@ -29,6 +29,7 @@ module.exports = (req, res, next) => {
       }
       // pass user details onto next route
       req.user = user
+      
       return next();
     });
   });
