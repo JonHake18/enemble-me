@@ -11,16 +11,12 @@ const LoginForm = ({
   user,
   toggleAuthenticateStatus
 }) => (
-  <div className="LoginForm">
-		<div className="Home">
-		  <h1> Ensemble Me</h1>
-		</div>
+  <div className="content">
 
     <div className="marginLoginForm">
 			<h1>Login form</h1>
 				<form action="/" onSubmit={onSubmit}>
-          <h2 className="card-heading">Login</h2>
-
+      
           {successMessage && <p className="success-message">{successMessage}</p>}
           {errors.summary && <p className="error-message">{errors.summary}</p>}
 

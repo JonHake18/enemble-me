@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import DropdownList from "../Form/DropdownList";
 import city_names from "../Arrays/Cities";
 import state_names from "../Arrays/States";
+import './signup.css';
 
 
 const SignUpFormMusician = ({
@@ -12,147 +13,151 @@ const SignUpFormMusician = ({
   errors,
   user,
 }) => (
-  <div>
-    <h1>Musician Signup</h1>
-    <form action="/" onSubmit={onSubmit}>
+    <div className="content">
+      <h1>Musician Signup</h1>
+      <form action="/" onSubmit={onSubmit}>
 
-      {errors.summary && <p className="error-message">{errors.summary}</p>}
+        {errors.summary && <p className="error-message">{errors.summary}</p>}
 
 
-      <div className="row">
+        <div className="row">
 
-			  <div className="form-group col-md-12">
-  				<button className="btn btn-secondary find-submit">
-	  				<Link to="/signupband" className={window.location.pathname === "/signupband" ? "nav-link active" : "nav-link"}>Band</Link>
-					</button>
-					<button className="btn btn-outline-secondary find-submit">
-						<Link to="/signupmusician" className={window.location.pathname === "/signupmusician" ? "nav-link active" : "nav-link"}>Musician</Link>
-					</button>
-				</div>
+          <div className="form-group col-md-12">
+            <button className="btn btn-outline-secondary find-submit">
+              <Link to="/signupband" className={window.location.pathname === "/signupband" ? "nav-link active" : "nav-link"}>Band</Link>
+            </button>
+            <button className="btn btn-secondary find-submit">
+              <Link to="/signupmusician" className={window.location.pathname === "/signupmusician" ? "nav-link active" : "nav-link"}>Musician</Link>
+            </button>
+          </div>
 
-			  <div className="form-group col-md-4">
-          <label htmlFor="firstName">First Name: </label>
-          <input
-        	  type="text"
-            className="form-control"
-            placeholder="First Name"
-            name="firstName"
-            onChange={onChange}
-            value={user.firstName}
-          />
-        </div>
-      
+          <div className="form-group col-md-4">
+            <label htmlFor="firstName">First Name: </label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="First Name"
+              name="firstName"
+              onChange={onChange}
+              value={user.firstName}
+            />
+          </div>
 
-      	<div className="form-group col-md-4">
-          <label htmlFor="lastName">Last Name: </label>
-          <input
-          	type="text"
-            className="form-control"
-            placeholder="Last Name"
-            name="lastName"
-            onChange={onChange}
-            value={user.lastName}
-          />
-        </div>
-  
-        <div className="form-group col-md-2">
-					<label htmlFor="location">City: </label><br></br>
-					<DropdownList data={city_names} id="city-names"
-            name="city"
-            onChange={onChange}
-            value={user.city}
-          />
-				</div>
 
-				<div className="form-group col-md-2">
-					<label htmlFor="location">State	: </label><br></br>
-					<DropdownList data={state_names} id="state-names"
-            name="state"
-            onChange={onChange}
-            value={user.state}
-          />
-				</div>
-      </div>
+          <div className="form-group col-md-4">
+            <label htmlFor="lastName">Last Name: </label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Last Name"
+              name="lastName"
+              onChange={onChange}
+              value={user.lastName}
+            />
+          </div>
 
-      <div className="row">
-			  <div className="form-group col-md-4">
-          <label htmlFor="instrument">Instrument: </label>
-          <input
-          	type="text"
-            className="form-control"
-            placeholder="Instrument"
-            name="instrument"
-            onChange={onChange}
-            value={user.instrument}
-          />
+          <div className="form-group col-md-2">
+            <label htmlFor="location">City: </label><br></br>
+            <DropdownList data={city_names} id="city-names"
+              name="city"
+              onChange={onChange}
+              value={user.city}
+            />
+          </div>
+
+          <div className="form-group col-md-2">
+            <label htmlFor="location">State	: </label><br></br>
+            <DropdownList data={state_names} id="state-names"
+              name="state"
+              onChange={onChange}
+              value={user.state}
+            />
+          </div>
         </div>
 
-        <div className="form-group col-md-4">
-          <label htmlFor="experience">Experience: </label>
-          <input
-          	type="text"
-            className="form-control"
-            placeholder="Experience"
-            name="experience"
-            onChange={onChange}
-            value={user.experience}
-          />
-        </div>
-      </div>
+        <div className="row">
+          <div className="form-group col-md-2"></div>
+          <div className="form-group col-md-4">
+            <label htmlFor="instrument">Instrument: </label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Instrument"
+              name="instrument"
+              onChange={onChange}
+              value={user.instrument}
+            />
+          </div>
 
-      <div className="row">
-        <div className="form-group col-md-4">
-          <label htmlFor="email">Email: </label>
-          <input
-          	type="text"
-            className="form-control"
-            placeholder="Email"
-            name="email"
-            onChange={onChange}
-            value={user.email}
-          />
+          <div className="form-group col-md-4">
+            <label htmlFor="experience">Experience: </label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Experience"
+              name="experience"
+              onChange={onChange}
+              value={user.experience}
+            />
+          </div>
+          <div className="form-group col-md-2"></div>
         </div>
-      </div>
 
-     <div className="row">
-        <div className="form-group col-md-4">
-          <label htmlFor="password">Password: </label>
-          <input
-            className="form-control"
-            placeholder="Password"
-            type="password"
-            name="password"
-            onChange={onChange}
-            value={user.password}
-          />
+        <div className="row">
+          <div className="form-group col-md-2"></div>
+          <div className="form-group col-md-4">
+            <label htmlFor="email">Email: </label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Email"
+              name="email"
+              onChange={onChange}
+              value={user.email}
+            />
+          </div>
+
+          <div className="form-group col-md-4">
+            <label htmlFor="password">Password: </label>
+            <input
+              className="form-control"
+              placeholder="Password"
+              type="password"
+              name="password"
+              onChange={onChange}
+              value={user.password}
+            />
+          </div>
+          <div className="form-group col-md-2"></div>
         </div>
-      </div>
 
-      
-      <div className="row">
-        <div className="form-group col-md-4">
-          <label htmlFor="videoLink">Youtube Video Link: </label>
-          <input
-          	type="text"
-            className="form-control"
-            placeholder="https://youtu.be/A71aqufiNtQ"
-            name="videoLink"
-            onChange={onChange}
-            value={user.videoLink}
-          />
+
+        <div className="row">
+          <div className="form-group col-md-12">
+            <label htmlFor="videoLink">Youtube Video Link: </label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="https://youtu.be/A71aqufiNtQ"
+              name="videoLink"
+              onChange={onChange}
+              value={user.videoLink}
+            />
+          </div>
         </div>
-      </div>
 
-      <div className="row">
-				<button className="btn btn-outline-secondary find-submit" type="submit">
-					Sign up
+        <div className="row">
+          <div className="form-group col-md-12">
+            <button className="btn btn-outline-secondary find-submit" type="submit">
+              Sign up
 				</button>
-			</div>
+          </div>
+        </div>
 
-      <div>Already have an account? <Link to={'/login'}>Log in</Link></div>
-    </form>
-  </div>
-);
+        <div>Already have an account? <Link to={'/login'}>Log in</Link></div>
+      </form>
+    </div>
+  );
 
 SignUpFormMusician.propTypes = {
   onSubmit: PropTypes.func.isRequired,
