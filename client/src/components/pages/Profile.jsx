@@ -40,7 +40,6 @@ const Profile = ({ secretData, user }) => (
     {<div><strong>{user.experience}</strong>!<br /></div>}
     {<div><strong>{user.videoLink}</strong>!<br /></div>}
     {<div><strong>{user.bandDescription}</strong>!<br /></div>}
-    <YoutubeEmbedVideo size="medium" videoId={user.videoLink} className="video-player" style={{ borderWidth: 5, borderColor: '#ffffff', borderStyle: 'solid' }} suggestions={false} />
   </div>
 
 );
