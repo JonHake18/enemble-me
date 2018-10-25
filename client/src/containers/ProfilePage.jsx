@@ -30,7 +30,6 @@ class ProfilePage extends React.Component {
     xhr.addEventListener('load', () => {
       console.log(xhr.status);
       if (xhr.status === 200) {
-        console.log(xhr.response);
         this.setState({
           secretData: xhr.response.message,
           user: xhr.response.user
