@@ -14,7 +14,7 @@
     "test": "npm run mocha-test && npm run reacttest",
     "seed": "node scripts/seedDB.js",
     "eject": "cd client && npm run eject",
-    "heroku-postbuild": "cd client && npm run build"
+    "heroku-postbuild": "cd client/ npm install && npm install --only=dev --no-shrinkwrap && npm run build && npm run build"
   },
   "repository": {
     "type": "git",
