@@ -15,7 +15,7 @@
     "test": "npm run mocha-test && npm run reacttest",
     "seed": "node scripts/seedDB.js",
     "eject": "cd client && npm run eject",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "cd client/ && npm install --only=dev && NODE_ENV=development npm install --no-shrinkwrap && npm run build"
   },
   "repository": {
     "type": "git",
@@ -50,8 +50,5 @@
     "chai": "^4.2.0",
     "chai-http": "^4.2.0",
     "mocha": "^5.2.0"
-  },
-  "engines": {
-    "node": "8.11.1"
   }
 }
