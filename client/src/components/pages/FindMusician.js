@@ -16,7 +16,7 @@ class FindMusician extends Component{
       formData: {
         firstName: "",
         lastName: "",
-        instrument: "",
+        instruments: "",
         experience: 0,
         city: "",
         state: ""
@@ -76,7 +76,7 @@ class FindMusician extends Component{
           <div className="col-sm-2" id="state">Experience</div>
           <div className="col-sm-4 input-group" id="musician-experience">
             <input 
-              type="text" 
+              type="number" 
               className="form-control" 
               name="experience" 
               value={this.state.formData.experience}
@@ -108,7 +108,7 @@ class FindMusician extends Component{
         </div>
         <div className="row">
           <div className="col-sm-12">
-            <button className="btn btn-outline-secondary find-submit" type="button" id="find-submit-musician">Search</button>
+            <button className="btn btn-outline-secondary find-submit" type="button" id="find-submit-musician" onsubmit={this.searchMusicians}>Search</button>
           </div>
         </div>
       </div>
