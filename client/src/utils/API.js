@@ -65,7 +65,7 @@ export default {
 		}
 	*/
 	newUserSignup: function(userObj){
-		return axios.post(`http://localhost:3001/api/user/APIkey=${process.env.APIkey}`, userObj)
+		return axios.post(`auth/signup`, userObj)
 	},
 	getMusicianById: function(id){
 		return axios.get(`api/musicians/APIkey=${process.env.APIkey}/${id}`)

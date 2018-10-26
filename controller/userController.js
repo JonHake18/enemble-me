@@ -14,24 +14,28 @@ module.exports = {
                     .populate("bandInfo")
                     .populate("instrumentsPlayed")
                     .populate("instrumentsDesired")
+                    .select("+email +password firstName lastName bandName +isMusician city state videoLink")
                     .then(dbModel => res.json(dbModel))
                     .catch(err => res.status(422).json(err));
           },
      findById: function(req, res) {
                db.User
                     .findById(req.params.id)
+                    .select("+email +password firstName lastName bandName +isMusician city state videoLink")
                     .then(dbModel => res.json(dbModel))
                     .catch(err => res.status(422).json(err));
           },
      update: function(req, res) {
                db.User
                     .findOneAndUpdate({ _id: req.params.id }, req.body)
+                    .select("+email +password firstName lastName bandName +isMusician city state videoLink")
                     .then(dbModel => res.json(dbModel))
                     .catch(err => res.status(422).json(err));
           },
      remove: function(req, res) {
                db.User
                     .findById({ _id: req.params.id })
+                    .select("+email +password firstName lastName bandName +isMusician city state videoLink")
                     .then(dbModel => dbModel.remove())
                     .then(dbModel => res.json(dbModel))
                     .catch(err => res.status(422).json(err));
