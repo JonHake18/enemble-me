@@ -1,44 +1,42 @@
 import axios from 'axios';
 require('dotenv');
-const QueryString = require("querystring");
-
 
 function urlQueryString(json){
 	let queryString = "";
 	let key;
 	for(key in json){
-		queryString += `${key}=`;
 		if(key === "instruments" && json[key].length > 0){
+			queryString += `${key}=`;
 			queryString += json[key].join(",");
 		}
 		else{
-			if(json[key] !== ""){
+			if(json[key] !== "" && json[key] !== undefined){
+				queryString += `${key}=`;
 				queryString += json[key];
 			}
 		}
 		queryString += `&`;
 	}
-	queryString = QueryString.stringify(queryString.slice(0, -1));
-	console.log(queryString);
-	return queryString;
+	return queryString.slice(0, -1);
 }
 
 
 export default {
 	/* the GET '/api/musicians/APIkey=' route uses URL query strings.
 		after the route URL, a question mark needs to be placed.
-		Then the query strings can be listed one after another using '&amp'
-		Spaces in strings need to be replaced by their encoded form: '%20'
+		Then the query strings can be listed one after another using '&'
+		Spaces in strings or hyphens need to be replaced by their encoded form: '%20'
 		Currently the API only supports searches with single instruments and single exp queries
 		example:
 		{
 			firstName: "Francis",
 			lastName: "Biker",
-			location: "Philedelphia, Pennsylvania",
+			city: "Kansas City",
+			state: "Kansas",
 			instruments: ["tuba", "drums", "harmonica"],
 			experience: 4
 		}
-		`/api/musicians/APIkey=${process.env.APIkey}?location=Kansas%20City&ampgenre=jazz&ampinstrument=trumpet&ampexp=3`
+		`/api/musicians/APIkey=${process.env.APIkey}?firstName=Francis&lastName=Biker&city=Kansas%20City&state=Kansas&instruments=tuba,drums,harmonica&experience=4`
 	*/
      searchMusicians: function(queryObj){
           return axios.get(`/api/musicians/APIkey=${process.env.APIkey}?${urlQueryString(queryObj)}`)
