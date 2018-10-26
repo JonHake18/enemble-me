@@ -9,6 +9,7 @@ const config = require('../config');
  */
 module.exports = (req, res, next) => {
   if (!req.headers.authorization) {
+    console.log(`HTTP request lacks header authorization`);
     return res.status(401).end();
   }
 
@@ -18,7 +19,10 @@ module.exports = (req, res, next) => {
   // decode the token using a secret key-phrase
   return jwt.verify(token, config.jwtSecret, (err, decoded) => {
     // the 401 code is for unauthorized status
-    if (err) { return res.status(401).end(); }
+    if (err) { 
+      console.log(`JWT failed to verify on HTTP request:\n\t${err}`);
+      return res.status(401).end();
+    }
     
     const userId = decoded.sub;
     

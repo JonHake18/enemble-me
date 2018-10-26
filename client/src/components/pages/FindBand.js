@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import DropdownList from "../Form/DropdownList";
 import "./Find.css";
 import city_names from "../Arrays/Cities";
@@ -22,6 +22,11 @@ class FindBand extends Component{
       searchResults: []
     }
     this.changeStatefulValue = this.changeStatefulValue.bind(this);
+    this.searchBands = this.searchBands.bind(this);
+  }
+
+  componentDidMount(){
+    this.setState({hasSearchedBefore: false});
   }
 
   changeStatefulValue(event) {
@@ -34,6 +39,15 @@ class FindBand extends Component{
     });
   }
 
+  searchBands() {
+    API.searchBands(this.state.formData)
+    .then(results=>{
+      this.setState({hasSearchedBefore: true, searchResults: results.data})
+    })
+    .catch(err=>{
+      console.log(`Could not complete Band Search:\n\t${err}`);
+    })
+  }
   render() {
     return (
       <div className="content">
@@ -106,7 +120,7 @@ class FindBand extends Component{
         </div>
         <div className="row">
           <div className="col-sm-12">
-            <button className="btn btn-outline-secondary find-submit" type="button" id="find-submit-band" onSubmit={this.searchBands}>Search</button>
+            <button className="btn btn-outline-secondary find-submit" type="button" id="find-submit-band" onClick={this.searchBands}>Search</button>
           </div>
         </div>
       </div>

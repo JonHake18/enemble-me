@@ -55,6 +55,7 @@ module.exports = {
             });
       },
       search: function(req, res) {
+            console.log(`I'm searching for Musicians!`);
             let musicQuery={};
             if(req.query.firstName !== undefined) musicQuery.firstName = req.query.firstName;
             if(req.query.lastName !== undefined) musicQuery.lastName = req.query.lastName;

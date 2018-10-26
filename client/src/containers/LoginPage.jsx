@@ -47,7 +47,7 @@ class LoginPage extends React.Component {
     const email = encodeURIComponent(this.state.user.email);
     const password = encodeURIComponent(this.state.user.password);
     const formData = `email=${email}&password=${password}`;
-
+    console.log(formData);
     // create an AJAX request
     const xhr = new XMLHttpRequest();
     xhr.open('post', '/auth/login');
@@ -77,7 +77,7 @@ class LoginPage extends React.Component {
         // change the component state
         const errors = xhr.response.errors ? xhr.response.errors : {};
         errors.summary = xhr.response.message;
-
+        console.log(JSON.stringify(errors));
         this.setState({
           errors
         });

@@ -21,11 +21,16 @@ class FindMusician extends Component{
         city: "",
         state: ""
       },
+      hasSearchedBefore: false,
       searchResults: []
     }
     this.changeStatefulValue = this.changeStatefulValue.bind(this);
+    this.searchMusicians = this.searchMusicians.bind(this);
   }
 
+  componentDidMount(){
+    this.setState({hasSearchedBefore: false});
+  }
   changeStatefulValue(event) {
     const field = event.target.name;
     const data = this.state.formData;
@@ -34,6 +39,16 @@ class FindMusician extends Component{
     this.setState({
       data
     });
+  }
+
+  searchMusicians() {
+    API.searchMusicians(this.state.formData)
+    .then(results=>{
+      this.setState({hasSearchedBefore: true, searchResults: results.data})
+    })
+    .catch(err=>{
+      console.log(`Could not complete Musician Search:\n\t${err}`);
+    })
   }
 
   render() {
@@ -68,8 +83,8 @@ class FindMusician extends Component{
             <input 
               type="text" 
               className="form-control" 
-              name="instrument" 
-              value={this.state.formData.instrument}
+              name="instruments" 
+              value={this.state.formData.instruments}
               onChange={this.changeStatefulValue}>
             </input>
           </div>
@@ -108,7 +123,7 @@ class FindMusician extends Component{
         </div>
         <div className="row">
           <div className="col-sm-12">
-            <button className="btn btn-outline-secondary find-submit" type="button" id="find-submit-musician" onsubmit={this.searchMusicians}>Search</button>
+            <button className="btn btn-outline-secondary find-submit" type="button" id="find-submit-musician" onClick={this.searchMusicians}>Search</button>
           </div>
         </div>
       </div>
