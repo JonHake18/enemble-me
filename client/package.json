@@ -5,6 +5,10 @@
   "repository": "https://github.com/JonHake18/ensemble-me.git",
   "author": "Matthew Kelly, Bradley , Jonathan Hake",
   "license": "MIT",
+  "engines": {
+    "node": "8.11.1",
+    "npm": "5.6.0"
+  },
   "dependencies": {
     "auth0-js": "^9.8.0",
     "axios": "^0.18.0",
