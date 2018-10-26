@@ -49,7 +49,6 @@ class SignUpPage extends React.Component {
     const videoLink = encodeURIComponent(this.state.user.videoLink);
     const password = encodeURIComponent(this.state.user.password);
     const formData = `firstName=${firstName}&lastName=${lastName}&instrument=${instrument}&experience=${experience}&videoLink=${videoLink}&email=${email}&password=${password}`;
-console.log(instrument)
     // create an AJAX request
     const xhr = new XMLHttpRequest();
     xhr.open('post', '/auth/signup');
