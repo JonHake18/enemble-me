@@ -9,12 +9,13 @@
   "scripts": {
     "start-react": "cd client && yarn start",
     "start": "concurrently \"nodemon server.js --ignore 'client/*'\" \"npm run start-react\"",
+    "build": "cd client && npm run build",
     "mocha-test": "npm run mocha -u tdd --reporter spec --exit",
     "reacttest": "cd client && npm run test",
     "test": "npm run mocha-test && npm run reacttest",
     "seed": "node scripts/seedDB.js",
     "eject": "cd client && npm run eject",
-    "heroku-postbuild": "cd client/ npm install && npm install --only=dev --no-shrinkwrap && npm run build && npm run build"
+    "heroku-postbuild": "npm run build"
   },
   "repository": {
     "type": "git",
