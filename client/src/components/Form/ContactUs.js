@@ -21,7 +21,7 @@ const ContactUs = props => (
       rows="10"
       />
       <br/>
-      <button class="btn btn-outline-secondary find-submit" type="button" id="submit-contact">Contact Us</button>
+      <button className="btn btn-outline-secondary find-submit" type="button" id="submit-contact">Contact Us</button>
     </div>
   </form>
 );
