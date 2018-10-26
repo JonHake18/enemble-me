@@ -10,21 +10,21 @@ const FindBand = () => (
     <div className="row">
       <div className="col-sm-2" id="city">First Name</div>
       <div className="col-sm-4 input-group" id="band-first-name">
-        <input type="text" class="form-control"></input>
+        <input type="text" className="form-control"></input>
       </div>
       <div className="col-sm-2" id="state">Last Name</div>
       <div className="col-sm-4 input-group" id="band-last-name">
-        <input type="text" class="form-control"></input>
+        <input type="text" className="form-control"></input>
       </div>
     </div>
     <div className="row">
       <div className="col-sm-2" id="city">Music Genre</div>
       <div className="col-sm-4 input-group" id="band-genre">
-        <input type="text" class="form-control"></input>
+        <input type="text" className="form-control"></input>
       </div>
       <div className="col-sm-2" id="state">Experience</div>
       <div className="col-sm-4 input-group" id="band-experience">
-        <input type="text" class="form-control"></input>
+        <input type="text" className="form-control"></input>
       </div>
     </div>
     <div className="row">
@@ -39,7 +39,7 @@ const FindBand = () => (
     </div>
     <div className="row">
       <div className="col-sm-12">
-        <button class="btn btn-outline-secondary find-submit" type="button" id="find-submit-band">Search</button>
+        <button className="btn btn-outline-secondary find-submit" type="button" id="find-submit-band">Search</button>
       </div>
     </div>
   </div>
