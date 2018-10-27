@@ -47,6 +47,7 @@ module.exports = {
         update: function(req, res) { 
             User
             .findOneAndUpdate({ _id: req.params.id }, req.body)
+            .where("isMusician").equals(false)
             .then(dbModel => res.json(dbModel))
             .catch(err => {
                   console.log(`Could not update Band with provided UserID:\n\t${err}`);
@@ -65,6 +66,7 @@ module.exports = {
 
             User.find(bandQuery)
             .select("bandName city state instrumentsDesired videoLink bandDescription musicGenre")
+            .where("isMusician").equals(false)
             .populate({
                   path: "instrumentsDesired",
                   select: "instrument yearsExp",
@@ -87,6 +89,7 @@ module.exports = {
         remove: function(req, res) {
             User
             .findById({ _id: req.params.id })
+            .where("isMusician").equals(false)
             .select("bandName city state instrumentsDesired videoLink bandDescription musicGenre")
             .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))
