@@ -1,11 +1,9 @@
 import React, {Component} from "react";
 import DropdownList from "../Form/DropdownList";
 import "./Find.css";
-// import city_names from "../Arrays/Cities";
-// import state_names from "../Arrays/States";
 import city_state from "../Arrays/State&Cities";
 import API from "../../utils/API.js";
-import { userInfo } from "os";
+import SearchResultBand from "../List/searchResultBand";
 
 class FindBand extends Component{
 
@@ -51,7 +49,7 @@ class FindBand extends Component{
   }
 
   searchBands() {
-    if(this.state.formData.city !== ['Pick a State'] || this.state.formData.state !== ['Pick a State']){
+    if(this.state.formData.city !== ['Pick a State'] && this.state.formData.state !== ['Pick a State']){
       API.searchBands(this.state.formData)
       .then(results=>{
         this.setState({hasSearchedBefore: true, searchResults: results.data})
@@ -61,6 +59,26 @@ class FindBand extends Component{
       })
     }
   }
+
+  listSearchResults() {
+    const searchResults = this.state.searchResults.map((result, index)=>{
+      let resultInstruments = [];
+      let resultExp = result.instrumentsDesired.map(item=>{
+        resultInstruments.push(item.instrument);
+        return item.yearsExp;
+      })
+      return <SearchResultBand
+        bandName={result.bandName}
+        bandDescription={result.bandDescription}
+        instruments={resultInstruments}
+        experience = {resultExp}
+        userId = {result._id}
+        key= {"Result_" + index}
+        ></SearchResultBand>;
+    })
+    return <div>{searchResults}</div>;
+  }
+
   render() {
     return (
       <div className="content">
@@ -134,6 +152,14 @@ class FindBand extends Component{
         <div className="row">
           <div className="col-sm-12">
             <button className="btn btn-outline-secondary find-submit" type="button" id="find-submit-band" onClick={this.searchBands}>Search</button>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-sm-12 searchResults">
+            {this.state.hasSearchedBefore &&
+              <div>
+                {this.listSearchResults()}
+              </div>}
           </div>
         </div>
       </div>
