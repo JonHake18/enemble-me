@@ -116,7 +116,7 @@ router.post('/signup', (req, res, next) => {
 
       return res.status(400).json({
         success: false,
-        message: 'Could not process the form.'
+        message: 'Could not process the Signup form.'
       });
     }
 
@@ -140,6 +140,7 @@ router.post('/login', (req, res, next) => {
 
   return passport.authenticate('local-login', (err, token, userData) => {
     if (err) {
+      console.log(`Login Authentication Error:\n\t${err}`);
       if (err.name === 'IncorrectCredentialsError') {
         return res.status(400).json({
           success: false,
@@ -149,7 +150,7 @@ router.post('/login', (req, res, next) => {
 
       return res.status(400).json({
         success: false,
-        message: 'Could not process the form.'
+        message: 'Could not process the Login form.'
       });
     }
 

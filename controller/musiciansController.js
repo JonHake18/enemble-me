@@ -20,9 +20,10 @@ function filterInstruments(results, instrumentArr, exp){
 // Defining methods for the booksController
 module.exports = {
       findAll: function(req, res) {
-          User
+            User
             .find()
             .where("isMusician").equals(true)
+            .select("firstName lastName city state instrumentsPlayed videoLink")
             .populate("instrumentsPlayed")
             .sort(-lastName)
             .then(dbModel => res.json(dbModel))
@@ -32,9 +33,10 @@ module.exports = {
             });
       },
       findById: function(req, res) {
-          User
+            User
             .findById(req.params.id)
             .where("isMusician").equals(true)
+            .select("firstName lastName city state instrumentsPlayed videoLink")
             .populate("instrumentsPlayed")
             .then(dbModel => res.json(dbModel))
             .catch(err => {
@@ -43,8 +45,9 @@ module.exports = {
             });
       },
       update: function(req, res) { 
-          User
+            User
             .findOneAndUpdate({ _id: req.params.id }, req.body)
+            .select("firstName lastName city state instrumentsPlayed videoLink")
             .then(dbModel => res.json(dbModel))
             .catch(err => {
                   console.log(`Could not update Musician with provided UserID:\n\t${err}`);
@@ -52,6 +55,7 @@ module.exports = {
             });
       },
       search: function(req, res) {
+            console.log(`I'm searching for Musicians!`);
             let musicQuery={};
             if(req.query.firstName !== undefined) musicQuery.firstName = req.query.firstName;
             if(req.query.lastName !== undefined) musicQuery.lastName = req.query.lastName;
@@ -61,7 +65,8 @@ module.exports = {
             let exp = (req.query.experience !== undefined && !isNaN(Number(req.query.experience)))?
                   Number(req.query.experience): 0;
 
-                  User.find(musicQuery)
+            User.find(musicQuery)
+            .select("firstName lastName city state instrumentsPlayed videoLink")
             .populate({
                   path: "instrumentsPlayed",
                   select: "instrument yearsExp",
@@ -82,8 +87,9 @@ module.exports = {
             })
       },
       remove: function(req, res) {
-          User
+            User
             .findById({ _id: req.params.id })
+            .select("firstName lastName city state instrumentsPlayed videoLink")
             .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
