@@ -32,7 +32,7 @@ class FindMusician extends Component{
   changeStatefulValue(event) {
     const field = event.target.name;
     const data = this.state.formData;
-    data[field] = event.target.value;
+    data[field] = (field === "instruments")? event.target.value.toLowerCase(): event.target.value;
 
     if(field === "state") {
       let city = document.getElementById("city-names").selectedIndex;

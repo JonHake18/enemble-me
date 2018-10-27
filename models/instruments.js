@@ -8,18 +8,19 @@ var options = {discriminatorKey: 'kind', _id: false};
 var InstrumentSchema = new Schema({
      instrument: {
           type: String,
-          required: true
+          required: true,
+          lowercase: true,
+          trim: true
      },
      yearsExp: {
           type: Number,
-          required: false
+          required: false,
      },
      userInfo: {
           type: Schema.Types.ObjectId,
           ref: "User"
      }
 });
-
 var PlayedInstrumentsSchema = new Schema(
      {
           instrumentStatus : {
@@ -27,7 +28,6 @@ var PlayedInstrumentsSchema = new Schema(
                default: "Playable"
           }
      }, options);
-
 var DesiredInstrumentsSchema = new Schema(
      {
           instrumentStatus : {
@@ -35,7 +35,6 @@ var DesiredInstrumentsSchema = new Schema(
                default: "Desired"
           }
      }, options);
-
 // This creates our model from the above schema, using mongoose's model method
 var Instrument = mongoose.model("Instrument", InstrumentSchema);
 var PlayedInstrument = Instrument.discriminator("PlayedInstrument", PlayedInstrumentsSchema);

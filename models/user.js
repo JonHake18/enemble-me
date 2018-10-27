@@ -6,18 +6,38 @@ const UserSchema = new mongoose.Schema({
   email: {
     type: String,
     index: { unique: true },
-    select: false
+    select: false,
+    trim: true
   },
   password: {
     type: String,
     select: false
   },
-  firstName: String,
-  lastName: String,
-  videoLink: String,
-  bandName: String,
-  bandDescription: String,
-  musicGenre: String,
+  firstName: {
+    type: String,
+    trim: true
+  },
+  lastName: {
+    type: String,
+    trim: true
+  },
+  videoLink: {
+    type: String,
+    trim: true
+  },
+  bandName: {
+    type: String,
+    trim: true
+  },
+  bandDescription: {
+    type: String,
+    trim: true
+  },
+  musicGenre: {
+    type: String,
+    lowercase: true,
+    trim: true
+  },
   isMusician: Boolean,
   city: String,
   state: String,
