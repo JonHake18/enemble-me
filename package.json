@@ -6,16 +6,19 @@
   "directories": {
     "test": "test"
   },
+  "engines": {
+    "node": "8.11.1",
+    "npm": "6.4.1"
+  },
   "scripts": {
     "start-react": "cd client && yarn start",
     "start": "concurrently \"nodemon server.js --ignore 'client/*'\" \"npm run start-react\"",
-    "build": "cd client && npm run build",
     "mocha-test": "npm run mocha -u tdd --reporter spec --exit",
     "reacttest": "cd client && npm run test",
     "test": "npm run mocha-test && npm run reacttest",
     "seed": "node scripts/seedDB.js",
     "eject": "cd client && npm run eject",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",

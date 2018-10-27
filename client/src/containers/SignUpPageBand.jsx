@@ -57,7 +57,8 @@ class SignUpPageBand extends React.Component {
     const musicGenre = encodeURIComponent(this.state.user.musicGenre);
     const experience = encodeURIComponent(this.state.user.experience);
     const email = encodeURIComponent(this.state.user.email);
-    const videoLink = encodeURIComponent(this.state.user.videoLink);
+    var re= /^(https?:\/\/)?((www\.)?(youtube(-nocookie)?|youtube.googleapis)\.com.*(v\/|v=|vi=|vi\/|e\/|embed\/|user\/.*\/u\/\d+\/)|youtu\.be\/)([_0-9a-z-]+)/i;
+    const videoLink = encodeURIComponent(this.state.user.videoLink.match(re)[7]);
     const password = encodeURIComponent(this.state.user.password);
     const city = encodeURIComponent(this.state.user.city);
     const state = encodeURIComponent(this.state.user.state);
