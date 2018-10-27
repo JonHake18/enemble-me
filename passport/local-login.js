@@ -21,7 +21,9 @@ module.exports = new PassportLocalStrategy({
   };
   // find a user by email address
   return User.findOne({ email: userData.email })
-    .select("+ email + password firstName lastName bandName")
+    .select("+ email + password firstName lastName bandName city state bandDescription instrumentsPlayed instrumentsDesired")
+    .populate("instrumentsPlayed")
+    .populate("instrumentsDesired")
     .catch(err => {
         console.log(`Could not find single user with matching email:\n\t${err}`);
         return done(err);
