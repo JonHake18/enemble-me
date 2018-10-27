@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SignUpFormMusician from '../components/pages/SignUpFormMusician.jsx';
+import city_state from "../components/Arrays/State&Cities";
 
 
 class SignUpPageMusician extends React.Component {
@@ -24,8 +25,8 @@ class SignUpPageMusician extends React.Component {
         bandDescription: '',
         password: '',
         isMusician: true,
-        city: '',
-        state: '',
+        city: [''],
+        state: [''],
         firstName: '',
         lastName: ''
       }
@@ -61,7 +62,7 @@ class SignUpPageMusician extends React.Component {
     const state = encodeURIComponent(this.state.user.state);
     const isMusician = encodeURIComponent(this.state.user.isMusician);
     const formData = `bandName=${bandName}&firstName=${firstName}&lastName=${lastName}&isMusician=${isMusician}&bandDescription=${bandDescription}&state=${state}&city=${city}&musicGenre=${musicGenre}&instrument=${instrument}&experience=${experience}&videoLink=${videoLink}&email=${email}&password=${password}`;
-console.log(instrument)
+
     // create an AJAX request
     const xhr = new XMLHttpRequest();
     xhr.open('post', '/auth/signup');
@@ -102,9 +103,19 @@ console.log(instrument)
     const user = this.state.user;
     user[field] = event.target.value;
 
-    this.setState({
-      user
-    });
+    if(field === "state") {
+      let city = document.getElementById("city-names").selectedIndex;
+      user['city'] = city_state[event.target.value][city] || city_state[event.target.value][0];
+      this.setState({
+        user
+      });
+    }
+    else{
+      this.setState({
+        user
+      });
+    }
+    
   }
 
   /**

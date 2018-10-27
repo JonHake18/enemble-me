@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import DropdownList from "../Form/DropdownList";
-import city_names from "../Arrays/Cities";
-import state_names from "../Arrays/States";
+// import city_names from "../Arrays/Cities";
+// import state_names from "../Arrays/States";
+import city_state from "../Arrays/State&Cities";
+
 
 
 const SignUpFormMusician = ({
@@ -57,7 +59,7 @@ const SignUpFormMusician = ({
   
         <div className="form-group col-md-2">
 					<label htmlFor="location">City: </label><br></br>
-					<DropdownList data={city_names} id="city-names"
+					<DropdownList data={city_state[user.state]} id="city-names"
             name="city"
             onChange={onChange}
             value={user.city}
@@ -66,7 +68,7 @@ const SignUpFormMusician = ({
 
 				<div className="form-group col-md-2">
 					<label htmlFor="location">State	: </label><br></br>
-					<DropdownList data={state_names} id="state-names"
+					<DropdownList data={Object.keys(city_state)} id="state-names"
             name="state"
             onChange={onChange}
             value={user.state}

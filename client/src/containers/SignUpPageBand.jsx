@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SignUpFormBand from '../components/pages/SignUpFormBand.jsx';
+import city_state from "../components/Arrays/State&Cities";
 
 
 
@@ -26,8 +27,8 @@ class SignUpPageBand extends React.Component {
         bandDescription: '',
         password: '',
         isMusician: false,
-        city: '',
-        state: '',
+        city: [''],
+        state: [''],
         firstName: '',
         lastName: ''
       }
@@ -105,9 +106,18 @@ console.log(formData)
     const user = this.state.user;
     user[field] = event.target.value;
 
-    this.setState({
-      user
-    });
+    if(field === "state") {
+      let city = document.getElementById("city-names").selectedIndex;
+      user['city'] = city_state[event.target.value][city] || city_state[event.target.value][0];
+      this.setState({
+        user
+      });
+    }
+    else{
+      this.setState({
+        user
+      });
+    }
   }
 
   /**
