@@ -55,7 +55,6 @@ module.exports = {
             });
       },
       search: function(req, res) {
-            console.log(`I'm searching for Musicians!`);
             let musicQuery={};
             if(req.query.firstName !== undefined) musicQuery.firstName = {$regex: req.query.firstName, $options: 'i'};
             if(req.query.lastName !== undefined) musicQuery.lastName = {$regex: req.query.lastName, $options: 'i'};
@@ -64,9 +63,10 @@ module.exports = {
             let instruments = (req.query.instruments !== undefined)? req.query.instruments.split(","):[/^\S/];
             let exp = (req.query.experience !== undefined && !isNaN(Number(req.query.experience)))?
                   Number(req.query.experience): 0;
-            console.log(musicQuery);
+
             User.find(musicQuery)
             .select("firstName lastName city state instrumentsPlayed videoLink")
+            .where("isMusician").equals(true)
             .populate({
                   path: "instrumentsPlayed",
                   select: "instrument yearsExp",

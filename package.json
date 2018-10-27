@@ -11,7 +11,7 @@
     "npm": "6.4.1"
   },
   "scripts": {
-    "start-react": "cd client && yarn start",
+    "start-react": "cd client && npm run start",
     "start": "concurrently \"nodemon server.js --ignore 'client/*'\" \"npm run start-react\"",
     "mocha-test": "npm run mocha -u tdd --reporter spec --exit",
     "reacttest": "cd client && npm run test",

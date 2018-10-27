@@ -132,7 +132,7 @@ class FindBand extends Component{
           <div className="col-sm-4 input-group" id="band-city">
             <DropdownList 
               data={city_state[this.state.formData.state]} 
-              id="state-names"
+              id="city-names"
               name="city"
               value={this.state.formData.city}
               onChange={this.changeStatefulValue}>
