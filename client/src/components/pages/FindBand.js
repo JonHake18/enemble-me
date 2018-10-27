@@ -1,9 +1,11 @@
 import React, {Component} from "react";
 import DropdownList from "../Form/DropdownList";
 import "./Find.css";
-import city_names from "../Arrays/Cities";
-import state_names from "../Arrays/States";
+// import city_names from "../Arrays/Cities";
+// import state_names from "../Arrays/States";
+import city_state from "../Arrays/State&Cities";
 import API from "../../utils/API.js";
+import { userInfo } from "os";
 
 class FindBand extends Component{
 
@@ -16,8 +18,8 @@ class FindBand extends Component{
         musicGenre: "",
         instruments: "",
         experience: 0,
-        city: "",
-        state: ""
+        city: ['Pick a State'],
+        state: ['Pick a State']
       },
       searchResults: []
     }
@@ -34,19 +36,30 @@ class FindBand extends Component{
     const data = this.state.formData;
     data[field] = event.target.value;
 
-    this.setState({
-      data
-    });
+    if(field === "state") {
+      let city = document.getElementById("city-names").selectedIndex;
+      data['city'] = city_state[event.target.value][city] || city_state[event.target.value][0];
+      this.setState({
+        formData: data
+      });
+    }
+    else{
+      this.setState({
+        formData: data
+      });
+    }
   }
 
   searchBands() {
-    API.searchBands(this.state.formData)
-    .then(results=>{
-      this.setState({hasSearchedBefore: true, searchResults: results.data})
-    })
-    .catch(err=>{
-      console.log(`Could not complete Band Search:\n\t${err}`);
-    })
+    if(this.state.formData.city !== ['Pick a State'] || this.state.formData.state !== ['Pick a State']){
+      API.searchBands(this.state.formData)
+      .then(results=>{
+        this.setState({hasSearchedBefore: true, searchResults: results.data})
+      })
+      .catch(err=>{
+        console.log(`Could not complete Band Search:\n\t${err}`);
+      })
+    }
   }
   render() {
     return (
@@ -100,7 +113,7 @@ class FindBand extends Component{
           <div className="col-sm-2" id="city">City</div>
           <div className="col-sm-4 input-group" id="band-city">
             <DropdownList 
-              data={city_names} 
+              data={city_state[this.state.formData.state]} 
               id="state-names"
               name="city"
               value={this.state.formData.city}
@@ -110,7 +123,7 @@ class FindBand extends Component{
           <div className="col-sm-2" id="state">State</div>
           <div className="col-sm-4 input-group" id="band-state">
             <DropdownList 
-              data={state_names} 
+              data={Object.keys(city_state)} 
               id="state-names"
               name="state"
               value={this.state.formData.state}
