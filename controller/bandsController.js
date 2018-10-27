@@ -56,8 +56,8 @@ module.exports = {
         },
         search: function(req, res) {
             let bandQuery={};
-            if(req.query.bandName !== undefined) bandQuery.bandName = req.query.bandName;
-            if(req.query.musicGenre !== undefined) bandQuery.musicGenre = req.query.musicGenre;
+            if(req.query.bandName !== undefined) bandQuery.bandName = {$regex: req.query.bandName, $options: 'i'};
+            if(req.query.musicGenre !== undefined) bandQuery.musicGenre = {$regex: req.query.musicGenre, $options: 'i'};
             if(req.query.city !== undefined) bandQuery.city = req.query.city;
             if(req.query.state !== undefined) bandQuery.state = req.query.state;
             let instruments = (req.query.instruments !== undefined)? req.query.instruments.split(","):[/^\S/];

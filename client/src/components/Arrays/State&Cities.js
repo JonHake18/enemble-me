@@ -1,5 +1,5 @@
 const states = {
-     'Pick a State' : ['Pick a State'],
+     '' : [''],
      'Alabama' : ['Birmingham', 'Montgomery', 'Mobile'],
      'Alaska' : ['Anchorage', 'Fairbanks', 'Juneau'],
      'Arizona' : ['Phoenix', 'Tucson', 'Mesa'],

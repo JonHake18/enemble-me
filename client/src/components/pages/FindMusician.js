@@ -16,8 +16,8 @@ class FindMusician extends Component{
         lastName: "",
         instruments: "",
         experience: 0,
-        city: ['Pick a State'],
-        state:['Pick a State']
+        city: [''],
+        state:['']
       },
       hasSearchedBefore: false,
       searchResults: []

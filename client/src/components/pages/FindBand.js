@@ -16,8 +16,8 @@ class FindBand extends Component{
         musicGenre: "",
         instruments: "",
         experience: 0,
-        city: ['Pick a State'],
-        state: ['Pick a State']
+        city: [''],
+        state: ['']
       },
       searchResults: []
     }

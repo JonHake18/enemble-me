@@ -25,8 +25,8 @@ class SignUpPageMusician extends React.Component {
         bandDescription: '',
         password: '',
         isMusician: true,
-        city: ['Pick a State'],
-        state: ['Pick a State'],
+        city: [''],
+        state: [''],
         firstName: '',
         lastName: ''
       }
